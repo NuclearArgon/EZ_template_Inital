@@ -257,10 +257,10 @@ void opcontrol() {
     // Put more user control code here!
     // . . .
 if(master.get_digital(DIGITAL_R1)){ 
-  setIntake(127);
+  setIntake(-127);
 }
 else if(master.get_digital(DIGITAL_R2)){
-  setIntake(-127);
+  setIntake(127);
 }
 else{
   setIntake(0);
