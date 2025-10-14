@@ -256,7 +256,7 @@ void opcontrol() {
     // . . .
     // Put more user control code here!
     // . . .
-if(master.get_digital(DIGITAL_R1)){
+if(master.get_digital(DIGITAL_R1)){ 
   setIntake(127);
 }
 else if(master.get_digital(DIGITAL_R2)){
@@ -264,6 +264,16 @@ else if(master.get_digital(DIGITAL_R2)){
 }
 else{
   setIntake(0);
+}
+//Outtake contols basically and above is intake
+if(master.get_digital(DIGITAL_L1)){
+  setOuttake(127);
+}
+else if(master.get_digital(DIGITAL_L2)){
+  setOuttake(-127);
+}
+else{
+  setOuttake(0);
 }
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
