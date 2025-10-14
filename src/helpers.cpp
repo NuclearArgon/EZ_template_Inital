@@ -5,4 +5,4 @@ void setIntake(int intakePower){
 }
 
 /* setIntake(127); to turn it on
-setIntake(0; to turn it off)*/
+setIntake(0); to turn it off)*/
