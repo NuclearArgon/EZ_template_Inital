@@ -51,7 +51,7 @@ void default_constants() {
 ///
 // Drive Example
 ///
-void drive_example() {
+void rfbb() {
   // The first parameter is target inches
   // The second parameter is max speed the robot will drive at
   // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
@@ -70,7 +70,7 @@ void drive_example() {
 ///
 // Turn Example
 ///
-void turn_example() {
+void rbbf() {
   // The first parameter is the target in degrees
   // The second parameter is max speed the robot will drive at
 
@@ -87,7 +87,7 @@ void turn_example() {
 ///
 // Combining Turn + Drive
 ///
-void drive_and_turn() {
+void skills() {
   chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
