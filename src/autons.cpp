@@ -51,12 +51,14 @@ void default_constants() {
 ///
 // Drive Example
 ///
-void rfbb() {
+void rfbb() { 
   // The first parameter is target inches
   // The second parameter is max speed the robot will drive at
   // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
   // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
 
+//we are starting 16.86 inches from the wall
+//rfbb stands for red front, blue back
   chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
@@ -83,7 +85,7 @@ void rfbb() {
 ///
 // Turn Example
 ///
-void rbbf() {
+void rbbf() { // stands for red back, blue front
   // The first parameter is the target in degrees
   // The second parameter is max speed the robot will drive at
 
