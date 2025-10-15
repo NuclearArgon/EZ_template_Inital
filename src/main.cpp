@@ -277,11 +277,11 @@ else{
 }
 
 //pneumatics
-if(master.get_digital_new_press(DIGITAL_A)){ //only going to use one button press until you let go NEED
+if(master.get_digital_new_press(DIGITAL_B)){ //only going to use one button press until you let go NEED
   toggleMatchLoader();
 }
 
-if(master.get_digital_new_press(DIGITAL_B)){
+if(master.get_digital_new_press(DIGITAL_DOWN)){
   toggleBallBlocker();
 }
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
