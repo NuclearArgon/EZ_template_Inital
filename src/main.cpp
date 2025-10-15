@@ -275,6 +275,15 @@ else if(master.get_digital(DIGITAL_L2)){
 else{
   setOuttake(0);
 }
+
+//pneumatics
+if(master.get_digital_new_press(DIGITAL_A)){ //only going to use one button press until you let go NEED
+  toggleMatchLoader();
+}
+
+if(master.get_digital_new_press(DIGITAL_B)){
+  toggleBallBlocker();
+}
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
 }
