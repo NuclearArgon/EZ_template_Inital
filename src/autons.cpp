@@ -78,18 +78,52 @@ void rfbb() {
   chassis.pid_turn_set(-45, TURN_SPEED);
   chassis.pid_wait();
 
-//step 5: Drive backward 22.6 inches to scoring postion
-  chassis.pid_drive_set(-22.6_in, DRIVE_SPEED, true);
+  //step 5: Drive forward 22.6 inches to scoring postion
+  chassis.pid_drive_set(22.6_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  //step 6 outtake all blocks
-  setOuttake(127);
+  //step 6 outtake all blocks by reversing intake because of how the bot is shaped
+  setIntake(-127);
   pros::delay(2000); //run outtake for 2 seconds
   chassis.pid_wait();
 
-  
+  //step 7 turn towards match loader
+  chassis.pid_turn_set(190, TURN_SPEED);
   chassis.pid_wait();
 
+  //step 8 activate match loader
+  toggleMatchLoader();
+
+  //step 9 drive towards match loader
+  chassis.pid_drive_set(84_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  //step 10 intake from match loader
+  setIntake(127);
+  pros::delay(2000);
+  chassis.pid_wait();
+
+  
+  //step 11 make match loader go back up
+  toggleMatchLoader();
+  chassis.pid_wait();
+
+  //step 12 drive towards long goal
+  chassis.pid_drive_set(48_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  //step 13 turn around so you can outtake
+  chassis.pid_turn_set(180, TURN_SPEED);
+  chassis.pid_wait();
+
+  //step 14 outtake and score
+  setOuttake(127);
+  pros::delay(3000);
+  setOuttake(0);
+  chassis.pid_wait();
+
+
+  
 }
 
 ///
