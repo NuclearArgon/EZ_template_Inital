@@ -59,25 +59,35 @@ void rfbb() {
 
 //we are starting 16.86 inches from the wall
 //rfbb stands for red front, blue back
-  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
+
+//Step 1: Drive forward 32 inches from park zone
+  chassis.pid_drive_set(32_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
+  //step two: turn right 90 degrees
   chassis.pid_turn_set(90, TURN_SPEED);
   chassis.pid_wait();
 
+  //step three: Drive forward 12 inches while running intake
+  setIntake(127); //start intake
   chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
   chassis.pid_wait();
+  setIntake(0);
 
-  chassis.pid_turn_set(180, TURN_SPEED);
+  // Step 4 turn: 45 degrees towards center goal
+  chassis.pid_turn_set(-45, TURN_SPEED);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
+//step 5: Drive backward 22.6 inches to scoring postion
+  chassis.pid_drive_set(-22.6_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  chassis.pid_turn_set(270, TURN_SPEED);
+  //step 6 outtake all blocks
+  setOuttake(127);
+  pros::delay(2000); //run outtake for 2 seconds
   chassis.pid_wait();
 
-  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
+  
   chassis.pid_wait();
 
 }
