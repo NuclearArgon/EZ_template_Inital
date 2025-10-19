@@ -233,8 +233,6 @@ void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
 
-bool ball_blocker_active=false; //Track ball blocker state
-
 
   while (true) {
     // Gives you some extras to make EZ-Template ezier
@@ -251,36 +249,28 @@ bool ball_blocker_active=false; //Track ball blocker state
     // . . .
 if(master.get_digital(DIGITAL_R1)){ 
   setIntake(-127);
+  setOuttake(127);   
 }
 else if(master.get_digital(DIGITAL_R2)){
   setIntake(127);
+  setOuttake(-127);
 }
 else{
   setIntake(0);
+  setOuttake(0);
 }
+
+
 //Outtake contols and above is intake
 
-if(master.get_digital(DIGITAL_L1)){
-  setOuttake(127);
-}
-else if(master.get_digital(DIGITAL_L2)){
+if(master.get_digital(DIGITAL_L2)){
   setOuttake(-127);
 
-  //only extend ball blocker if not already active
-  if(!ball_blocker_active){
-    setBallBlocker(true);
-    ball_blocker_active=true;
-  }
 }
 
 else{
   setOuttake(0);
 
-  //Only retract ball blocker if currently active
-  if(ball_blocker_active){
-    setBallBlocker(false);
-    ball_blocker_active=false;
-  }
 }
 
 
@@ -289,7 +279,7 @@ if(master.get_digital_new_press(DIGITAL_B)){ //only going to use one button pres
   toggleMatchLoader();
 }
 
-if(master.get_digital_new_press(DIGITAL_DOWN)){
+if(master.get_digital_new_press(DIGITAL_L1)){
   toggleBallBlocker();
 }
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
