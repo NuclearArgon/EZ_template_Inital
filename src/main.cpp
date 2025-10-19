@@ -259,6 +259,7 @@ else{
   setIntake(0);
 }
 //Outtake contols and above is intake
+
 if(master.get_digital(DIGITAL_L1)){
   setOuttake(127);
 }
