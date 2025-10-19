@@ -60,6 +60,8 @@ void rfbb() {
 //we are starting 16.86 inches from the wall
 //rfbb stands for red front, blue back
 
+
+// keep in mind the length is 15.5 inches and the width is 14.6
 //Step 1: Drive forward 32 inches from park zone
   chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
   pros::delay(6000);
