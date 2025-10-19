@@ -233,6 +233,9 @@ void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
 
+bool ball_blocker_active=false; //Track ball blocker state
+
+
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
@@ -255,16 +258,30 @@ else if(master.get_digital(DIGITAL_R2)){
 else{
   setIntake(0);
 }
-//Outtake contols basically and above is intake
+//Outtake contols and above is intake
 if(master.get_digital(DIGITAL_L1)){
   setOuttake(127);
 }
 else if(master.get_digital(DIGITAL_L2)){
   setOuttake(-127);
+
+  //only extend ball blocker if not already active
+  if(!ball_blocker_active){
+    setBallBlocker(true);
+    ball_blocker_active=true;
+  }
 }
+
 else{
   setOuttake(0);
+
+  //Only retract ball blocker if currently active
+  if(ball_blocker_active){
+    setBallBlocker(false);
+    ball_blocker_active=false;
+  }
 }
+
 
 //pneumatics
 if(master.get_digital_new_press(DIGITAL_B)){ //only going to use one button press until you let go NEED
