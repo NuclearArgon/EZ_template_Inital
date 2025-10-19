@@ -61,8 +61,10 @@ void rfbb() {
 //rfbb stands for red front, blue back
 
 //Step 1: Drive forward 32 inches from park zone
-  chassis.pid_drive_set(32_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
+  pros::delay(6000);
   chassis.pid_wait();
+  
 
   //step two: turn right 90 degrees
   chassis.pid_turn_set(90, TURN_SPEED);
@@ -125,6 +127,7 @@ void rfbb() {
 
   
 }
+
 
 ///
 // Turn Example
