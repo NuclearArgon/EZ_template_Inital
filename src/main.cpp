@@ -265,12 +265,9 @@ else{
 
 if(master.get_digital(DIGITAL_L2)){
   setOuttake(-127);
-
 }
-
-else{
+else if(!master.get_digital(DIGITAL_R1) && !master.get_digital(DIGITAL_R2)){
   setOuttake(0);
-
 }
 
 

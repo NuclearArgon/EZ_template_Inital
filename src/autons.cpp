@@ -61,10 +61,10 @@ void rfbb() {
 //rfbb stands for red front, blue back
 
 
-// keep in mind the length is 15.5 inches and the width is 14.6
-//Step 1: Drive forward 32 inches from park zone
-  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
-  pros::delay(6000);
+// keep in mind the length is 15.5 inches and the width is 14.6, so it starts (from the front of the robot 32.36 inches away from wall.
+
+//Step 1: Drive forward from park zone to line up with balls on right side
+  chassis.pid_drive_set(20.64_in, DRIVE_SPEED, true); // to go  just to the edge of the tile it is 15.64 inches
   chassis.pid_wait();
   
 
@@ -72,9 +72,9 @@ void rfbb() {
   chassis.pid_turn_set(90, TURN_SPEED);
   chassis.pid_wait();
 
-  //step three: Drive forward 12 inches while running intake
+  //step three: Drive forward  while running intake to get balls 
   setIntake(127); //start intake
-  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(8.5_in, DRIVE_SPEED, true);
   chassis.pid_wait();
   setIntake(0);
 
@@ -82,8 +82,8 @@ void rfbb() {
   chassis.pid_turn_set(-45, TURN_SPEED);
   chassis.pid_wait();
 
-  //step 5: Drive forward 22.6 inches to scoring postion
-  chassis.pid_drive_set(22.6_in, DRIVE_SPEED, true);
+  //step 5: Drive forward to scoring postion
+  chassis.pid_drive_set(7.2_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step 6 outtake all blocks by reversing intake because of how the bot is shaped
