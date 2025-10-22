@@ -184,7 +184,7 @@ void skills() {
 ///
 // Wait Until and Changing Max Speed
 ///
-void wait_until_change_speed() {
+void backup() {
   // pid_wait_until will wait until the robot gets to a desired position
 
   // When the robot gets to 6 inches slowly, the robot will travel the remaining distance at full speed
