@@ -185,28 +185,10 @@ void skills() {
 // Wait Until and Changing Max Speed
 ///
 void backup() {
-  // pid_wait_until will wait until the robot gets to a desired position
+ //this is driving forward and stopping as a back up per draykes request
 
-  // When the robot gets to 6 inches slowly, the robot will travel the remaining distance at full speed
-  chassis.pid_drive_set(24_in, 30, true);
-  chassis.pid_wait_until(6_in);
-  chassis.pid_speed_max_set(DRIVE_SPEED);  // After driving 6 inches at 30 speed, the robot will go the remaining distance at DRIVE_SPEED
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(-45_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  // When the robot gets to -6 inches slowly, the robot will travel the remaining distance at full speed
-  chassis.pid_drive_set(-24_in, 30, true);
-  chassis.pid_wait_until(-6_in);
-  chassis.pid_speed_max_set(DRIVE_SPEED);  // After driving 6 inches at 30 speed, the robot will go the remaining distance at DRIVE_SPEED
-  chassis.pid_wait();
+ chassis.pid_drive_set(3_in, DRIVE_SPEED, true);
+ chassis.pid_wait();
 }
 
 ///
