@@ -158,14 +158,7 @@ void rbbf() { // stands for red back, blue front
   // The first parameter is the target in degrees
   // The second parameter is max speed the robot will drive at
 
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
-  chassis.pid_wait();
 
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
-  chassis.pid_wait();
 }
 
 ///
