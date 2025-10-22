@@ -63,6 +63,11 @@ void rfbb() {
 
 // keep in mind the length is 15.5 inches and the width is 14.6, so it starts (from the front of the robot 32.36 inches away from wall.
 
+//North = 0°
+//East = 90°
+//South = 180°
+//West = 270°
+
 //Step 1: Drive forward from park zone to line up with balls on right side
   chassis.pid_drive_set(20.64_in, DRIVE_SPEED, true); // to go  just to the edge of the tile it is 15.64 inches
   chassis.pid_wait();
@@ -92,7 +97,7 @@ void rfbb() {
   chassis.pid_wait();
 
   //step 7 turn towards match loader
-  chassis.pid_turn_set(-45, TURN_SPEED);
+  chassis.pid_turn_relative_set(180, TURN_SPEED);
   chassis.pid_wait();
 
   //step 8 activate match loader
@@ -103,7 +108,7 @@ void rfbb() {
   chassis.pid_wait();
 
   //step   turn to make partial square up
-  chassis.pid_turn_set(90, TURN_SPEED);
+  chassis.pid_turn_set(270, TURN_SPEED); //very confusing degree add up
   chassis.pid_wait();
 
 
@@ -130,14 +135,14 @@ void rfbb() {
   chassis.pid_drive_set(-20.85_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  //step 11 make match loader go back up
+  /*step 11 make match loader go back up
   toggleMatchLoader();
-  chassis.pid_wait();
+  chassis.pid_wait();*/
 
   chassis.pid_drive_set(-7_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  //step 14 outtake and score
+  //step 14 outtake and score in long goal 
   setOuttake(127);
   pros::delay(3000);
   setOuttake(0);
