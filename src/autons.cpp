@@ -68,6 +68,7 @@ void rfbb() {
 //South = 180°
 //West = 270°
 
+
 //Step 1: Drive forward from park zone to line up with balls on right side
   chassis.pid_drive_set(20.64_in, DRIVE_SPEED, true); // to go  just to the edge of the tile it is 15.64 inches
   chassis.pid_wait();
@@ -188,7 +189,7 @@ void rbbf() { // stands for red back, blue front
   chassis.pid_wait();
 
   //drive to match loader
-  chassis.pid_drive_set(19_in, TURN_SPEED, true);
+  chassis.pid_drive_set(19_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //start intaking from match loader
