@@ -59,8 +59,8 @@ void initialize() {
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
       {"Red Front, Blue Back\n\nRed right and Blue", rfbb}, //rfbb stands for red front, blue back
-      {"Turn\n\nTurn 3 times.", rbbf},  // stands for red back, blue front
-      {"Drive and Turn\n\nDrive forward, turn, come back", skills}, 
+      {"Red Back, Blue Front\n\nTurn 3 times.", rbbf},  // stands for red back, blue front
+      {"Skills Auton\n\nDo this to win skills auto baby", skills}, 
       {"Basic drive forward\n\nThis is back up if they have good auto", backup}
 
   });
