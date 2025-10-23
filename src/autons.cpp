@@ -78,12 +78,15 @@ void rfbb() {
   chassis.pid_wait();
 
   //step three: Drive forward  while running intake to get balls 
-  setIntake(127); //start intake
+  //start intake and start ball blocker
+  toggleBallBlocker();//down
+  setIntake(127); 
   chassis.pid_drive_set(8.5_in, DRIVE_SPEED, true);
   chassis.pid_wait();
-  setIntake(0);
+  
 
   // Step 4 turn: 45 degrees towards center goal
+  setIntake(0);
   chassis.pid_turn_set(-45, TURN_SPEED);
   chassis.pid_wait();
 
@@ -94,6 +97,7 @@ void rfbb() {
   //step 6 outtake all blocks by reversing intake because of how the bot is shaped
   setIntake(-127);
   pros::delay(2000); //run outtake for 2 seconds
+  setIntake(0);
   chassis.pid_wait();
 
   //step 7 turn towards match loader
@@ -104,16 +108,11 @@ void rfbb() {
   toggleMatchLoader();
 
   //step 9 drive towards match loader but get ready for square up turn
-  chassis.pid_drive_set(70.2_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(34_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step   turn to make partial square up
   chassis.pid_turn_set(270, TURN_SPEED); //very confusing degree add up
-  chassis.pid_wait();
-
-
-  //step   drive forward to get ready to do 180 facing match loader directly
-  chassis.pid_drive_set(3_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
 
@@ -122,27 +121,22 @@ void rfbb() {
   chassis.pid_wait();
 
   // step   drive forward to match loader
-  chassis.pid_drive_set(5_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(19_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
 
   //step 10 intake from match loader
   setIntake(127);
   pros::delay(2000);
+  setIntake(0);
   chassis.pid_wait();
 
   //drive towards long goal
-  chassis.pid_drive_set(-20.85_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  /*step 11 make match loader go back up
-  toggleMatchLoader();
-  chassis.pid_wait();*/
-
-  chassis.pid_drive_set(-7_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-27.85_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step 14 outtake and score in long goal 
+  toggleBallBlocker();
   setOuttake(127);
   pros::delay(3000);
   setOuttake(0);
@@ -155,9 +149,63 @@ void rfbb() {
 // Turn Example
 ///
 void rbbf() { // stands for red back, blue front
-  // The first parameter is the target in degrees
-  // The second parameter is max speed the robot will drive at
+ //step 1 drive forward to line up with balls on ground
+  chassis.pid_drive_set(20.64_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
 
+  //step 2 turn left to get blocks
+  chassis.pid_turn_set(-90, TURN_SPEED);
+  chassis.pid_wait();
+
+  //drive to blocks while running intake and actvating ballblocker
+  toggleBallBlocker(); //down
+  setIntake(127);
+  chassis.pid_drive_set(8.5_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  
+  //turn towards middle goal which is higher than red right side
+  chassis.pid_turn_set(225, TURN_SPEED);
+  chassis.pid_wait();
+
+  //drive towards middle goal
+  chassis.pid_drive_set(-7.2_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  //score in goals
+  toggleBallBlocker(); //up
+  setOuttake(127);
+  pros::delay(2000);
+  chassis.pid_wait();
+
+  //start going to match loader
+  chassis.pid_drive_set(34_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  //turn torwards match loader and activaite it
+  toggleMatchLoader();
+  toggleBallBlocker(); //down
+  chassis.pid_turn_set(180, TURN_SPEED);
+  chassis.pid_wait();
+
+  //drive to match loader
+  chassis.pid_drive_set(19_in, TURN_SPEED, true);
+  chassis.pid_wait();
+
+  //start intaking from match loader
+  setIntake(127);
+  pros::delay(3000);
+  chassis.pid_wait();
+
+  //drive to long goal
+  toggleBallBlocker();//up
+  chassis.pid_drive_set(-27_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  //score in long goal
+  setOuttake(127);
+  pros::delay(3000);
+  setOuttake(0);
+  chassis.pid_wait();
 
 }
 
