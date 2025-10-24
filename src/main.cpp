@@ -264,16 +264,20 @@ else{
 
 //Outtake contols and above is intake
 
-if(master.get_digital(DIGITAL_L2)){
+if(master.get_digital(DIGITAL_L2)){// just outtake
   setOuttake(-127);
+  setBallBlocker2(true);
 }
-else if(!master.get_digital(DIGITAL_R1) && !master.get_digital(DIGITAL_R2)){
+else{
+  setBallBlocker2(false);
+}
+if(!master.get_digital(DIGITAL_R1) && !master.get_digital(DIGITAL_R2) && !master.get_digital(DIGITAL_L2)){
   setOuttake(0);
 }
 
 
 //pneumatics
-if(master.get_digital_new_press(DIGITAL_B)){ //only going to use one button press until you let go NEED
+if(master.get_digital_new_press(DIGITAL_Y)){ //only going to use one button press until you let go NEED
   toggleMatchLoader();
 }
 

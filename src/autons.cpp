@@ -85,7 +85,7 @@ void rfbb() {
 
   //step three: Drive forward  while running intake to get balls 
   //start intake and start ball blocker
-  chassis.pid_drive_set(8.5_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(8.5_in, 70, true);
   setIntake(0);
   chassis.pid_wait();
   

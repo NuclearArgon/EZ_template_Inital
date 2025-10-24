@@ -37,3 +37,14 @@ void toggleMatchLoader(){
 void toggleBallBlocker(){
     ball_blocker.toggle();
 }
+void setBallBlocker2(bool extended){
+    if(extended){
+        ball_blocker2.extend();
+    }
+    else{
+        ball_blocker2.retract();
+    }
+}
+void toggleBallBlocker2(){
+    ball_blocker2.toggle();
+}
