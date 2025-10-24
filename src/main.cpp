@@ -250,11 +250,11 @@ void opcontrol() {
     // . . .
 if(master.get_digital(DIGITAL_R1)){ 
   setIntake(-127);
-  setOuttake(127);   
+  setOuttake(80);   
 }
 else if(master.get_digital(DIGITAL_R2)){
   setIntake(127);
-  setOuttake(-127);
+  setOuttake(-80);
 }
 else{
   setIntake(0);
@@ -265,7 +265,7 @@ else{
 //Outtake contols and above is intake
 
 if(master.get_digital(DIGITAL_L2)){// just outtake
-  setOuttake(-127);
+  setOuttake(-80);
   setBallBlocker2(true);
 }
 else{
