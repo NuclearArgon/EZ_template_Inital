@@ -70,19 +70,23 @@ void rfbb() {
 
 
 //Step 1: Drive forward from park zone to line up with balls on right side
-  chassis.pid_drive_set(20.64_in, DRIVE_SPEED, true); // to go  just to the edge of the tile it is 15.64 inches
+  chassis.pid_drive_set(10_in, DRIVE_SPEED, true); 
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(45, TURN_SPEED);
   chassis.pid_wait();
   
 
   //step two: turn right 90 degrees
-  chassis.pid_turn_set(90, TURN_SPEED);
+   toggleBallBlocker();//down
+   setIntake(127); 
+  chassis.pid_drive_set(13_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step three: Drive forward  while running intake to get balls 
   //start intake and start ball blocker
-  toggleBallBlocker();//down
-  setIntake(127); 
   chassis.pid_drive_set(8.5_in, DRIVE_SPEED, true);
+  setIntake(0);
   chassis.pid_wait();
   
 
@@ -92,13 +96,14 @@ void rfbb() {
   chassis.pid_wait();
 
   //step 5: Drive forward to scoring postion
-  chassis.pid_drive_set(7.2_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(9_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step 6 outtake all blocks by reversing intake because of how the bot is shaped
   setIntake(-127);
   pros::delay(2000); //run outtake for 2 seconds
   setIntake(0);
+  pros::delay(5000);
   chassis.pid_wait();
 
   //step 7 turn towards match loader
@@ -146,9 +151,7 @@ void rfbb() {
 }
 
 
-///
-// Turn Example
-///
+
 void rbbf() { // stands for red back, blue front
  //step 1 drive forward to line up with balls on ground
   chassis.pid_drive_set(20.64_in, DRIVE_SPEED, true);
@@ -214,20 +217,8 @@ void rbbf() { // stands for red back, blue front
 // Combining Turn + Drive
 ///
 void skills() {
-  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(45_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(-45_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(-24_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
+  
+  
 }
 
 ///
