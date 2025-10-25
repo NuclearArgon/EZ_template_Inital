@@ -79,16 +79,20 @@ void rfbb() {
 
   //start intake and drive at full speed for whatever many inches
    setIntake(127); 
-  chassis.pid_drive_set(13_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
   chassis.pid_wait_quick_chain();
 
   //Drive forward at a slower rate while running intake to get balls 
-  chassis.pid_drive_set(8.5_in, 70, true);
+  chassis.pid_drive_set(6_in, 70, true);
+  chassis.pid_wait_quick_chain();
+toggleMatchLoader();
+  chassis.pid_drive_set(2_in, 70, true);
   setIntake(0);
   chassis.pid_wait();
   
 
   // Step 4 turn:  degrees towards center goal
+  toggleMatchLoader();
   chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
   chassis.pid_wait();
 
@@ -101,6 +105,8 @@ void rfbb() {
   pros::delay(2000); //run outtake for 2 seconds
   setIntake(0);
   chassis.pid_wait();
+  chassis.pid_drive_set(-5_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
 
   //step 7 turn towards match loader
   chassis.pid_turn_relative_set(180, TURN_SPEED);
@@ -111,15 +117,15 @@ void rfbb() {
   toggleMatchLoader();
 
   //step 9 drive towards match loader but get ready for square up turn
-  chassis.pid_drive_set(34_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step   turn to make partial square up
-  chassis.pid_turn_set(270, TURN_SPEED); //very confusing degree add up
+  chassis.pid_turn_set(90, TURN_SPEED); //very confusing degree add up
   chassis.pid_wait();
 
   //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(6_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step  face match loader head on
@@ -127,7 +133,7 @@ void rfbb() {
   chassis.pid_wait();
 
   // step   drive forward to match loader
-  chassis.pid_drive_set(15_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(18_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
 
@@ -140,7 +146,7 @@ void rfbb() {
   chassis.pid_wait();
 
   //drive towards long goal
-  chassis.pid_drive_set(-26_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step 14 outtake and score in long goal 
@@ -219,8 +225,11 @@ void rbbf() { // stands for red back, blue front
 // Combining Turn + Drive
 ///
 void skills() {
+  chassis.pid_drive_set(24_in, DRIVE_SPEED, true);
+  pros::delay(1000);
+  chassis.pid_wait();
   //drive backards into park zone
-  chassis.pid_drive_set(-10_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-40_in, DRIVE_SPEED, true);
   chassis.pid_wait();
   
 }
