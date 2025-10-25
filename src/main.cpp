@@ -264,14 +264,14 @@ else{
 
 //Outtake contols and above is intake
 
-if(master.get_digital(DIGITAL_L2)){// just outtake
+if(master.get_digital(DIGITAL_L2)){// just outtake and ball blocker for middle goal
   setOuttake(-80);
   setBallBlocker2(true);
 }
 else{
-  setBallBlocker2(false);
+  setBallBlocker2(false); // retracts it
 }
-if(!master.get_digital(DIGITAL_R1) && !master.get_digital(DIGITAL_R2) && !master.get_digital(DIGITAL_L2)){
+if(!master.get_digital(DIGITAL_R1) && !master.get_digital(DIGITAL_R2) && !master.get_digital(DIGITAL_L2)){ // this ensures that the outtake motor only stops when the driver isnt pressing any of the three button control R1(runs intake in reverse and outtake forward)R2(runs intake forward and outtake reverse)L2 runs just the outtake in reverse. it prevents the outtake from being stopped
   setOuttake(0);
 }
 
