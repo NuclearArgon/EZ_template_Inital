@@ -143,7 +143,7 @@ void rfbb() {
 
   //step 14 outtake and score in long goal 
   toggleBallBlocker();
-  setOuttake(127);
+  setOuttake(80);
   pros::delay(3000);
   setOuttake(0);
   chassis.pid_wait();
