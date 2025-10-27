@@ -248,40 +248,49 @@ void opcontrol() {
     // . . .
     // Put more user control code here!
     // . . .
+    //R1/R2: control single intake motor (full power)
 if(master.get_digital(DIGITAL_R1)){ 
-  setIntake(-127);
-  setOuttake(80);   
+  setIntake(127); //full forward   
 }
 else if(master.get_digital(DIGITAL_R2)){
-  setIntake(127);
-  setOuttake(-80);
+  setIntake(-127);//full reverse
 }
+//stop
 else{
   setIntake(0);
-  setOuttake(0);
+  
 }
 
 
-//Outtake contols and above is intake
+//L1: control dual outtake motors forward
 
-if(master.get_digital(DIGITAL_L2)){// just outtake and ball blocker for middle goal
-  setOuttake(-80);
-  setBallBlocker2(true);
+if(master.get_digital(DIGITAL_L1)){// just outtake and ball blocker for middle goal
+  setOuttake(127); //going out
+  
+}
+
+//L2: control dual outtake motors reverse + Ball Blocker 2
+if(master.get_digital(DIGITAL_L2)){
+  setOuttake(-127);
+  setBallBlocker2(true); //Extend Ball Blokcer 2
 }
 else{
-  setBallBlocker2(false); // retracts it
+  setBallBlocker2(false); //retracts ball blocker 2
+
+
 }
-if(!master.get_digital(DIGITAL_R1) && !master.get_digital(DIGITAL_R2) && !master.get_digital(DIGITAL_L2)){ // this ensures that the outtake motor only stops when the driver isnt pressing any of the three button control R1(runs intake in reverse and outtake forward)R2(runs intake forward and outtake reverse)L2 runs just the outtake in reverse. it prevents the outtake from being stopped
+// stop  outtake when no L1/L2 pressed
+if(!master.get_digital(DIGITAL_L1) && !master.get_digital(DIGITAL_L2)){
   setOuttake(0);
 }
-
+ 
 
 //pneumatics
 if(master.get_digital_new_press(DIGITAL_Y)){ //only going to use one button press until you let go NEED
   toggleMatchLoader();
 }
 
-if(master.get_digital_new_press(DIGITAL_L1)){
+if(master.get_digital_new_press(DIGITAL_DOWN)){ //changed from L1 to down
   toggleBallBlocker();
 }
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME

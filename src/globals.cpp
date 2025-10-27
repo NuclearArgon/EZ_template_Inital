@@ -1,8 +1,8 @@
 #include "main.h"
 
 //motors
-pros::MotorGroup intake_motors({5,-6},pros::v5::MotorGears::blue); //For two intake motors on ports (5 and 6)
-pros::Motor outtake_motor(4,pros::v5::MotorGears::blue); // For outtake motor on port (4)
+pros::Motor intake_motor(4,pros::v5::MotorGears::blue); //For single intake motor on port 4- R1/R2 control
+pros::MotorGroup outtake_motors({5,-6},pros::v5::MotorGears::blue); // For two half motors for outtake on port 5 and 6 L1-L2 control 
 
 //Pneumatics
 pros::adi::Pneumatics match_loader('A',false); // Match loader mechanism
