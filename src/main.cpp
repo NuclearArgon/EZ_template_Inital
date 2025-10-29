@@ -250,36 +250,43 @@ void opcontrol() {
     // . . .
     //R1/R2: control single intake motor (full power)
 if(master.get_digital(DIGITAL_R1)){ 
-  setIntake(-127); //full forward   
+  setIntake(-127); //Intakes balls 
+
 }
-else if(master.get_digital(DIGITAL_R2)){
+else if(master.get_digital(DIGITAL_R2)){ //outtake balls out of bottom
   setIntake(127);//full reverse
-  
+  setOuttakeMid(127);
+  setOuttakeTop(127);  
 }
 //stop
 else{
   setIntake(0);
-  
+  setOuttakeMid(0);
+  setOuttakeTop(0);  
 }
 
 
 //L1: control dual outtake motors forward
 
-if(master.get_digital(DIGITAL_L1)){// just outtake and ball blocker for middle goal
+if(master.get_digital(DIGITAL_L1)){// Spining the top two motors to score on long goal
   setOuttakeMid(127); //going out
+  setOuttakeTop(127);
 }
 else{
   setOuttakeMid(0);
+  setOuttakeTop(0);
 }
 
-//L2: control dual outtake motors reverse + Ball Blocker 2
-if(master.get_digital(DIGITAL_L2)){
+//L2: Score mid goal 
+if(master.get_digital(DIGITAL_L2)){ 
   setOuttakeTop(-127);
+  setOuttakeMid(127);
   setBallBlocker2(true); //Extend Ball Blokcer 2
 }
 else{
   setBallBlocker2(false); //retracts ball blocker 2
   setOuttakeTop(0);
+  setOuttakeMid(0);
 
 }
 
