@@ -70,8 +70,8 @@ void rfbb() {
 
 
 //Step 1: Drive forward from park zone to line up with balls on right side
-  chassis.pid_drive_set(15_in, DRIVE_SPEED, true);
-  setIntake(127); 
+  chassis.pid_drive_set(13_in, DRIVE_SPEED, true);
+  setIntake(-127); 
   chassis.pid_wait_quick_chain();
 
   
@@ -80,25 +80,29 @@ void rfbb() {
   
 
   //start intake and drive at full speed for whatever many inches
-  chassis.pid_drive_set(6_in, 30, true);
+  chassis.pid_drive_set(8_in, 20, true);
   toggleMatchLoader();
   chassis.pid_wait_quick_chain();
   
 
   // Step 4 turn:  degrees towards center goal
   chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
-  toggleMatchLoader();
   setIntake(0);
-  chassis.pid_wait();
+  toggleMatchLoader();
+  chassis.pid_wait_quick_chain();
 
   //step 5: Drive forward to scoring postion
-  chassis.pid_drive_set(8_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(9_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step 6 outtake all blocks by reversing intake because of how the bot is shaped
-  setIntake(-127);
-  pros::delay(2000); //run outtake for 2 seconds
+  setIntake(127);
+  setOuttakeMid(-127);
+  setOuttakeTop(-127);
+  pros::delay(3000); //run outtake for 2 seconds
   setIntake(0);
+  setOuttakeMid(0);
+  setOuttakeTop(0);
   chassis.pid_wait();
   chassis.pid_drive_set(-5_in, DRIVE_SPEED, true);
   chassis.pid_wait();
@@ -108,8 +112,7 @@ void rfbb() {
   chassis.pid_wait();
 
   
-  //step 8 activate match loader
-  toggleMatchLoader();
+
 
   //step 9 drive towards match loader but get ready for square up turn
   chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
@@ -120,11 +123,12 @@ void rfbb() {
   chassis.pid_wait();
 
   //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(6_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(3_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step  face match loader head on
   chassis.pid_turn_set(180, TURN_SPEED);
+  toggleMatchLoader();
   chassis.pid_wait();
 
   // step   drive forward to match loader
@@ -133,11 +137,9 @@ void rfbb() {
 
 
   //step 10 intake from match loader
-  setIntake(127);
-  setOuttake(127);
+  setIntake(-127);
   pros::delay(2000);
   setIntake(0);
-  setOuttake(0);
   chassis.pid_wait();
 
   //drive towards long goal
@@ -146,9 +148,11 @@ void rfbb() {
 
   //step 14 outtake and score in long goal 
   toggleBallBlocker();
-  setOuttake(-80);
+  setOuttakeMid(127);
+  setOuttakeTop(127);
   pros::delay(3000);
-  setOuttake(0);
+  setOuttakeMid(0);
+  setOuttakeTop(0);
   chassis.pid_wait();
 
 }

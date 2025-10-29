@@ -278,7 +278,7 @@ if(l1_pressed){// Spining the top two motors to score on long goal
   setOuttakeMid(127); //going out
   setOuttakeTop(127);
 }
-else if(l2_pressed){
+else if(l2_pressed){// scores mid goal
   setOuttakeMid(127);
   setOuttakeTop(-127);
   setBallBlocker2(true);
