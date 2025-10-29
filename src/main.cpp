@@ -254,12 +254,11 @@ if(master.get_digital(DIGITAL_R1)){
 }
 else if(master.get_digital(DIGITAL_R2)){
   setIntake(127);//full reverse
-  setOuttake(-127);
+  
 }
 //stop
 else{
   setIntake(0);
-  setOuttake(0);
   
 }
 
@@ -267,24 +266,23 @@ else{
 //L1: control dual outtake motors forward
 
 if(master.get_digital(DIGITAL_L1)){// just outtake and ball blocker for middle goal
-  setOuttake(127); //going out
-  
+  setOuttakeMid(127); //going out
+}
+else{
+  setOuttakeMid(0);
 }
 
 //L2: control dual outtake motors reverse + Ball Blocker 2
 if(master.get_digital(DIGITAL_L2)){
-  setOuttake(-127);
+  setOuttakeTop(-127);
   setBallBlocker2(true); //Extend Ball Blokcer 2
 }
 else{
   setBallBlocker2(false); //retracts ball blocker 2
-
+  setOuttakeTop(0);
 
 }
-// stop  outtake when no L1/L2 pressed
-if(!master.get_digital(DIGITAL_L1) && !master.get_digital(DIGITAL_L2)){
-  setOuttake(0);
-}
+
  
 
 //pneumatics
