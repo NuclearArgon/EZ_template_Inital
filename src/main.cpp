@@ -234,6 +234,8 @@ void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_BRAKE);
 
+  //check button states first to prevent conflicts
+
 
   while (true) {
     // Gives you some extras to make EZ-Template ezier
@@ -247,47 +249,47 @@ void opcontrol() {
 
     // . . .
     // Put more user control code here!
-    // . . .
+    // . . 
+    
+  bool r1_pressed=master.get_digital(DIGITAL_R1);
+  bool r2_pressed=master.get_digital(DIGITAL_R2);
+  bool l1_pressed=master.get_digital(DIGITAL_L1);
+  bool l2_pressed=master.get_digital(DIGITAL_L2);
     //R1/R2: control single intake motor (full power)
-if(master.get_digital(DIGITAL_R1)){ 
+if(r1_pressed){ 
   setIntake(-127); //Intakes balls 
 
 }
-else if(master.get_digital(DIGITAL_R2)){ //outtake balls out of bottom
+else if(r2_pressed){ //outtake balls out of bottom
   setIntake(127);//full reverse
-  setOuttakeMid(127);
-  setOuttakeTop(127);  
+  setOuttakeMid(-127);
+  setOuttakeTop(-127);
 }
 //stop
 else{
   setIntake(0);
-  setOuttakeMid(0);
-  setOuttakeTop(0);  
+  
 }
 
 
-//L1: control dual outtake motors forward
+//L1
 
-if(master.get_digital(DIGITAL_L1)){// Spining the top two motors to score on long goal
+if(l1_pressed){// Spining the top two motors to score on long goal
   setOuttakeMid(127); //going out
   setOuttakeTop(127);
 }
-else{
-  setOuttakeMid(0);
-  setOuttakeTop(0);
-}
-
-//L2: Score mid goal 
-if(master.get_digital(DIGITAL_L2)){ 
-  setOuttakeTop(-127);
+else if(l2_pressed){
   setOuttakeMid(127);
-  setBallBlocker2(true); //Extend Ball Blokcer 2
+  setOuttakeTop(-127);
+  setBallBlocker2(true);
 }
 else{
-  setBallBlocker2(false); //retracts ball blocker 2
-  setOuttakeTop(0);
-  setOuttakeMid(0);
-
+  //smart stopping only stop outtake if R2 isnt controlling them
+  if(!r2_pressed){
+    setOuttakeMid(0);
+    setOuttakeTop(0);
+  }
+  setBallBlocker2(false);
 }
 
  
