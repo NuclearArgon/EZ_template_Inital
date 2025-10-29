@@ -250,14 +250,16 @@ void opcontrol() {
     // . . .
     //R1/R2: control single intake motor (full power)
 if(master.get_digital(DIGITAL_R1)){ 
-  setIntake(127); //full forward   
+  setIntake(-127); //full forward   
 }
 else if(master.get_digital(DIGITAL_R2)){
-  setIntake(-127);//full reverse
+  setIntake(127);//full reverse
+  setOuttake(-127);
 }
 //stop
 else{
   setIntake(0);
+  setOuttake(0);
   
 }
 
@@ -290,7 +292,7 @@ if(master.get_digital_new_press(DIGITAL_Y)){ //only going to use one button pres
   toggleMatchLoader();
 }
 
-if(master.get_digital_new_press(DIGITAL_DOWN)){ //changed from L1 to down
+if(master.get_digital_new_press(DIGITAL_RIGHT)){ //changed from L1 to down
   toggleBallBlocker();
 }
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME

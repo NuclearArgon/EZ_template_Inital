@@ -6,11 +6,27 @@ void setIntake(int intakePower){
     intake_motor.move(intakePower);
 }
 
+//indviudal motor controls
+void setOuttakeTop(int power){
+    outtake_motor_top.move(power);
+}
+void setOuttakeMid(int power){
+    outtake_motor_mid.move(power);
+}
+
+//combined function incase whatever reason ig
 void setOuttake(int outtakePower){
-    outtake_motors.move(outtakePower);
+    outtake_motor_top.move(outtakePower);
+    outtake_motor_mid.move(outtakePower);
 }
 /* setIntake(127); to turn it on
 setIntake(0); to turn it off)*/
+
+
+
+
+
+
 
 //pneumatics
 void setMatchLoader(bool extended){

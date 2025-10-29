@@ -57,11 +57,11 @@ void rfbb() {
   // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
   // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
 
-//we are starting 16.86 inches from the wall
+//we are starting 14.86 inches from the wall
 //rfbb stands for red front, blue back
 
 
-// keep in mind the length is 15.5 inches and the width is 14.6, so it starts (from the front of the robot 32.36 inches away from wall.
+// keep in mind the length is 15.5 inches and the width is 14.6, so it starts (from the front of the robot 30.36 inches away from wall.
 
 //North = 0°
 //East = 90°
@@ -70,30 +70,25 @@ void rfbb() {
 
 
 //Step 1: Drive forward from park zone to line up with balls on right side
-  chassis.pid_drive_set(10_in, DRIVE_SPEED, true); 
+  chassis.pid_drive_set(15_in, DRIVE_SPEED, true);
+  setIntake(127); 
   chassis.pid_wait_quick_chain();
 
+  
   chassis.pid_turn_set(45, TURN_SPEED);
-  chassis.pid_wait();
+  chassis.pid_wait_quick_chain();
   
 
   //start intake and drive at full speed for whatever many inches
-   setIntake(127); 
-  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(6_in, 30, true);
+  toggleMatchLoader();
   chassis.pid_wait_quick_chain();
-
-  //Drive forward at a slower rate while running intake to get balls 
-  chassis.pid_drive_set(6_in, 70, true);
-  chassis.pid_wait_quick_chain();
-toggleMatchLoader();
-  chassis.pid_drive_set(2_in, 70, true);
-  setIntake(0);
-  chassis.pid_wait();
   
 
   // Step 4 turn:  degrees towards center goal
-  toggleMatchLoader();
   chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
+  toggleMatchLoader();
+  setIntake(0);
   chassis.pid_wait();
 
   //step 5: Drive forward to scoring postion
