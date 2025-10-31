@@ -80,7 +80,7 @@ void rfbb() {
   
 
   //start intake and drive at full speed for whatever many inches
-  chassis.pid_drive_set(8_in, 20, true);
+  chassis.pid_drive_set(20_in, 20, true);
   toggleMatchLoader();
   chassis.pid_wait_quick_chain();
   
@@ -96,6 +96,8 @@ void rfbb() {
   chassis.pid_wait();
 
   //step 6 outtake all blocks by reversing intake because of how the bot is shaped
+  setIntake(0);
+  pros::delay(100);
   setIntake(127);
   setOuttakeMid(-127);
   setOuttakeTop(-127);
@@ -199,7 +201,7 @@ void rbbf() { // stands for red back, blue front
   chassis.pid_wait();
 
   //drive to match loader
-  chassis.pid_drive_set(19_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(18_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //start intaking from match loader
@@ -209,7 +211,7 @@ void rbbf() { // stands for red back, blue front
 
   //drive to long goal
   toggleBallBlocker();//up
-  chassis.pid_drive_set(-27_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-29_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //score in long goal
