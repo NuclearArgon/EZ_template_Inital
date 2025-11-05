@@ -247,33 +247,33 @@ void rbbf() { // stands for red back, blue front
 // Combining Turn + Drive
 ///
 void skills() {
-  //drove west to get ready to turn and face match loader
+  //drive west to get ready to turn and face match loader
   chassis.pid_drive_set(27_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-//turn to face match loader and put match loader down
-toggleMatchLoader();
-chassis.pid_turn_set(90, TURN_SPEED);
-chassis.pid_wait();
+  //turn to face match loader and put match loader down
+  toggleMatchLoader();
+  chassis.pid_turn_set(90, TURN_SPEED);
+  chassis.pid_wait();
 
-//drive into match loader and start intaking balls
-setIntake(-127);
-chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-pros::delay(3000);
-chassis.pid_wait();
+  //drive into match loader and start intaking balls
+  setIntake(-127);
+  chassis.pid_drive_set(14_in, DRIVE_SPEED, true);
+  pros::delay(3000);
+  chassis.pid_wait();
 
-//drive backwards to score in long goal 
-chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
-chassis.pid_wait();
+  //drive backwards to score in long goal 
+  chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
 
-//score in long goal
-toggleBallBlocker();
-setOuttakeMid(127);
-setOuttakeTop(127);
-pros::delay(3000);
-setOuttakeMid(0);
-setOuttakeTop(0);
-chassis.pid_wait();
+  //score in long goal
+  toggleBallBlocker();
+  setOuttakeMid(127);
+  setOuttakeTop(127);
+  pros::delay(3000);
+  setOuttakeMid(0);
+  setOuttakeTop(0);
+  chassis.pid_wait();
 
   
 }
