@@ -70,7 +70,7 @@ void rfbb() {
 
 
 //Step 1: Drive forward from park zone to line up with balls on right side
-  chassis.pid_drive_set(13_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
   setIntake(-127); 
   chassis.pid_wait_quick_chain();
 
@@ -80,9 +80,12 @@ void rfbb() {
   
 
   //start intake and drive at full speed for whatever many inches
-  chassis.pid_drive_set(20_in, 20, true);
+  chassis.pid_drive_set(18_in, 20, true);
   toggleMatchLoader();
   chassis.pid_wait_quick_chain();
+
+  chassis.pid_drive_set(-6_in, 70, true);
+  chassis.pid_wait();
   
 
   // Step 4 turn:  degrees towards center goal
@@ -92,12 +95,10 @@ void rfbb() {
   chassis.pid_wait_quick_chain();
 
   //step 5: Drive forward to scoring postion
-  chassis.pid_drive_set(9_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(11_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step 6 outtake all blocks by reversing intake because of how the bot is shaped
-  setIntake(0);
-  pros::delay(100);
   setIntake(127);
   setOuttakeMid(-127);
   setOuttakeTop(-127);
@@ -134,14 +135,13 @@ void rfbb() {
   chassis.pid_wait();
 
   // step   drive forward to match loader
-  chassis.pid_drive_set(18_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(16_in, 50, true);
   chassis.pid_wait();
 
 
   //step 10 intake from match loader
   setIntake(-127);
-  pros::delay(2000);
-  setIntake(0);
+  pros::delay(15000);
   chassis.pid_wait();
 
   //drive towards long goal
@@ -155,6 +155,7 @@ void rfbb() {
   pros::delay(3000);
   setOuttakeMid(0);
   setOuttakeTop(0);
+  setIntake(0);
   chassis.pid_wait();
 
 }
@@ -247,7 +248,7 @@ void rbbf() { // stands for red back, blue front
 // Combining Turn + Drive
 ///
 void skills() {
-  //drive west to get ready to turn and face match loader
+  //drive east to get ready to turn and face match loader
   chassis.pid_drive_set(27_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
@@ -275,7 +276,45 @@ void skills() {
   setOuttakeTop(0);
   chassis.pid_wait();
 
-  
+  //backup from the long goal and go back to match loader
+  setIntake(-127);
+  chassis.pid_drive_set(25_in, DRIVE_SPEED, true);
+  pros::delay(3000);
+  setIntake(0);
+  chassis.pid_wait();
+
+  //score in long goal again
+  chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
+  toggleBallBlocker();
+  setOuttakeMid(127);
+  setOuttakeTop(127);
+  pros::delay(3000);
+  setOuttakeMid(0);
+  setOuttakeTop(0);
+  chassis.pid_wait();
+
+  //back up from match loader again and get ready to go to west side
+  chassis.pid_drive_set(5_in, DRIVE_SPEED, true);
+  toggleMatchLoader();
+  chassis.pid_wait();
+
+  //face west
+  chassis.pid_turn_set(180, TURN_SPEED);
+  chassis.pid_wait();
+
+  //drive all the way to west side
+  chassis.pid_drive_set(135_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  //face match loader on the west side
+  chassis.pid_turn_relative_set(-90, TURN_SPEED);
+  toggleMatchLoader();
+  chassis.pid_wait();
+
+  //drive into matchloader to get balls 
+  chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
 }
 
 ///
