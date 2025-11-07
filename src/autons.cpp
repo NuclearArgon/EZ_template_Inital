@@ -126,7 +126,7 @@ void rfbb() {
   chassis.pid_wait();
 
   //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(3_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(3.5_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step  face match loader head on
@@ -141,7 +141,7 @@ void rfbb() {
 
   //step 10 intake from match loader
   setIntake(-127);
-  pros::delay(15000);
+  pros::delay(1000);
   chassis.pid_wait();
 
   //drive towards long goal
