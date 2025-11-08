@@ -61,7 +61,8 @@ void initialize() {
       {"Red Front, Blue Back\n\nRed right and Blue right", rfbb}, //rfbb stands for red front, blue back
       {"Red Back, Blue Front\n\nRed left and Blue left.", rbbf},  // stands for red back, blue front
       {"Skills Auton\n\nDo this to win skills auto baby", skills}, 
-      {"Basic drive forward\n\nThis is back up if they have good auto I guess?", backup}
+      {"Basic drive forward\n\nThis is back up if they have good auto I guess?", backup},
+      {"Backup Skills\n\nThis is The back up for skills", bs},
 
   });
 

@@ -382,7 +382,84 @@ void skills() {
   // this should end the first half of our autons the next will be below
 
 
+  // this should make it face east again aka origin orientation
+  chassis.pid_turn_relative_set(-90, TURN_SPEED);
+  chassis.pid_wait();
+
+  //drive towards the center a little bit to be able to turn and go on the north side of everything
+  chassis.pid_drive_set(15_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  //this makes it so we are facing north
+  chassis.pid_turn_relative_set(-90, TURN_SPEED);
+  chassis.pid_wait();
+
+  //next we will drive to the complete other side other wise kown as northside
+  chassis.pid_drive_set(66_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
   
+
+  //Next thing to do is the north west loaders
+  chassis.pid_turn_relative_set(-90, TURN_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(15_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  //face match loaders
+  chassis.pid_turn_relative_set(90, TURN_SPEED);
+  chassis.pid_wait();
+
+
+
+  //now we are going to do the intaking and scoring 
+
+  //drive into match loader and start intaking balls
+  setIntake(-127);
+  chassis.pid_drive_set(14_in, DRIVE_SPEED, true);
+  pros::delay(1000);
+  chassis.pid_wait();
+
+  //drive backwards to score in long goal 
+  chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  //score in long goal
+  toggleBallBlocker();
+  setOuttakeMid(127);
+  setOuttakeTop(127);
+  pros::delay(3000);
+  setOuttakeMid(0);
+  setOuttakeTop(0);
+  toggleBallBlocker();
+  chassis.pid_wait();
+
+  //backup from the long goal and go back to match loader
+  setIntake(-127);
+  chassis.pid_drive_set(25_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  pros::delay(1000);
+  setIntake(0);
+  chassis.pid_wait();
+
+  //score in long goal again
+  chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
+  toggleBallBlocker();
+  setOuttakeMid(127);
+  setOuttakeTop(127);
+  pros::delay(3000);
+  setOuttakeMid(0);
+  setOuttakeTop(0);
+  toggleBallBlocker();
+  chassis.pid_wait();
+
+  //back up from match loader again and get ready to go to west side
+  chassis.pid_drive_set(5_in, DRIVE_SPEED, true);
+  toggleMatchLoader();
+  chassis.pid_wait();
+
 
 }
 
@@ -396,6 +473,12 @@ void backup() {
  chassis.pid_wait();
 }
 
+void bs(){
+  setOuttakeTop(-127);
+  pros::delay(2000);
+  setOuttakeTop(0);
+  chassis.pid_wait();
+}
 ///
 // Swing Example
 ///

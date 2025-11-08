@@ -6,3 +6,4 @@ void rfbb();
 void rbbf();
 void skills();
 void backup();
+void bs();
