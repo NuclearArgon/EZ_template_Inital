@@ -303,6 +303,15 @@ if(master.get_digital_new_press(DIGITAL_Y)){ //only going to use one button pres
 if(master.get_digital_new_press(DIGITAL_RIGHT)){ //changed from L1 to down
   toggleBallBlocker();
 }
+
+if(master.get_digital_new_press(DIGITAL_B)){ //only going to use one button press until you let go NEED
+  toggleDescore();
+}
+
+
+
+
     pros::delay(ez::util::DELAY_TIME);  // This is used for timer calculations!  Keep this ez::util::DELAY_TIME
   }
 }
+

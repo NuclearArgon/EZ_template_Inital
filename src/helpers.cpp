@@ -50,9 +50,11 @@ void setBallBlocker(bool extended){
 void toggleMatchLoader(){
     match_loader.toggle();
 }
+//top blocker
 void toggleBallBlocker(){
     ball_blocker.toggle();
 }
+//ball blocker mid goal
 void setBallBlocker2(bool extended){
     if(extended){
         ball_blocker2.extend();
@@ -63,4 +65,21 @@ void setBallBlocker2(bool extended){
 }
 void toggleBallBlocker2(){
     ball_blocker2.toggle();
+}
+
+
+
+// descore mech
+void setDescore(bool extended){
+    if(extended){
+        Descore.extend(); //true = open/extended
+    }
+    else{
+        Descore.retract(); //false = closed/retracted
+    }
+}
+
+void toggleDescore(){
+     Descore.toggle();
+    
 }
