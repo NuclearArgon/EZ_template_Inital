@@ -9,7 +9,7 @@ pros::Motor outtake_motor_mid(6,pros::v5::MotorGears::blue); //mid outtake port 
 pros::adi::Pneumatics match_loader('A',false); // Match loader mechanism
 pros::adi::Pneumatics ball_blocker('B',false); // To stop the balls from coming out the top
 pros::adi::Pneumatics ball_blocker2('c',false); // this is to stop the balls from coming out the bottom
-pros::adi::Pneumatics Descore('B',false); // this is the descore mech
+pros::adi::Pneumatics Descore('D',false); // this is the descore mech
 
 
 /*Funtions to use for pneumatics

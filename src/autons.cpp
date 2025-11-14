@@ -84,7 +84,7 @@ void rfbb() {
   //toggleMatchLoader();
   chassis.pid_wait_quick_chain();
 
-  chassis.pid_drive_set(-15_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-19_in, DRIVE_SPEED, true);
   chassis.pid_wait();
   
 
@@ -128,7 +128,7 @@ void rfbb() {
   chassis.pid_wait();
 
   //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(3.5_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(6.7_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step  face match loader head on
