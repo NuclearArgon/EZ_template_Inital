@@ -102,7 +102,7 @@ void rfbb() {
   setIntake(127);
   setOuttakeMid(-127);
   setOuttakeTop(-127);
-  pros::delay(3000); //run outtake for 2 seconds
+  pros::delay(2000); //run outtake for 2 seconds
   setIntake(0);
   setOuttakeMid(0);
   setOuttakeTop(0);
@@ -128,7 +128,7 @@ void rfbb() {
   chassis.pid_wait();
 
   //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(6.7_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(9_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step  face match loader head on
@@ -147,14 +147,14 @@ void rfbb() {
   chassis.pid_wait_quick_chain();
 
   //drive towards long goal
-  chassis.pid_drive_set(-26_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-23_in, DRIVE_SPEED, true);
   chassis.pid_wait_quick_chain();
 
   //step 14 outtake and score in long goal 
   toggleBallBlocker();
   setOuttakeMid(127);
   setOuttakeTop(127);
-  pros::delay(3000);
+  pros::delay(2000);
   setOuttakeMid(0);
   setOuttakeTop(0);
   setIntake(0);
@@ -177,7 +177,6 @@ void rbbf() { // stands for red back, blue front
 
   //start intake and drive at full speed for whatever many inches
   chassis.pid_drive_set(18_in, 20, true);
-  toggleMatchLoader();
   chassis.pid_wait_quick_chain();
 
   chassis.pid_drive_set(-6_in, 70, true);
@@ -187,7 +186,6 @@ void rbbf() { // stands for red back, blue front
   // Step 4 turn:  degrees towards center goal
   chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
   setIntake(0);
-  toggleMatchLoader();
   chassis.pid_wait_quick_chain();
 
   
