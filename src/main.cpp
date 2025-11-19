@@ -261,36 +261,35 @@ if(r1_pressed){
   setIntake(-127); //Intakes balls 
 
 }
-else if(r2_pressed){ //outtake balls out of bottom
+if(r2_pressed){ //outtake balls out of bottom
   setIntake(127);//full reverse
-  setOuttakeMid(-127);
-  setOuttakeTop(-127);
+  setOuttake(127);
 }
 //stop
 else{
   setIntake(0);
-  
+  setOuttake(0);
 }
 
 
 //L1
 
 if(l1_pressed){// Spining the top two motors to score on long goal
-  setOuttakeMid(127); //going out
-  setOuttakeTop(127);
+  setOuttake(127); //going out
+  setIntake(-127);
 }
 else if(l2_pressed){// scores mid goal
-  setOuttakeMid(127);
-  setOuttakeTop(-127);
-  setBallBlocker2(true);
+  setOuttake(127);
+  setIntake(-127);
+  setMidGoal(true);
 }
 else{
   //smart stopping only stop outtake if R2 isnt controlling them
   if(!r2_pressed){
-    setOuttakeMid(0);
-    setOuttakeTop(0);
+    setOuttake(0);
+  
   }
-  setBallBlocker2(false);
+  setMidGoal(false);
 }
 
  
@@ -301,12 +300,9 @@ if(master.get_digital_new_press(DIGITAL_Y)){ //only going to use one button pres
 }
 
 if(master.get_digital_new_press(DIGITAL_RIGHT)){ //changed from L1 to down
-  toggleBallBlocker();
-}
-
-if(master.get_digital_new_press(DIGITAL_B)){ //only going to use one button press until you let go NEED
   toggleDescore();
 }
+
 
 
 

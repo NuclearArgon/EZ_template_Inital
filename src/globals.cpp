@@ -1,15 +1,13 @@
 #include "main.h"
 
 //motors
-pros::Motor intake_motor(5,pros::v5::MotorGears::blue); //For single intake motor on port 4- R1/R2 control
-pros::Motor outtake_motor_top(4, pros::v5::MotorGears::blue); // Top outtake port 4
-pros::Motor outtake_motor_mid(6,pros::v5::MotorGears::blue); //mid outtake port 6
+pros::Motor intake_motor(1,pros::v5::MotorGears::blue); //For single intake motor on port 4- R1/R2 control
+pros::Motor outtake_motor(10, pros::v5::MotorGears::blue); // Top outtake port 4
 
 //Pneumatics
 pros::adi::Pneumatics match_loader('A',false); // Match loader mechanism
-pros::adi::Pneumatics ball_blocker('B',false); // To stop the balls from coming out the top
-pros::adi::Pneumatics ball_blocker2('c',false); // this is to stop the balls from coming out the bottom
-pros::adi::Pneumatics Descore('D',false); // this is the descore mech
+pros::adi::Pneumatics mid_goal('B',false); // To stop the balls from coming out the top
+pros::adi::Pneumatics Descore('C',false); // this is the descore mech
 
 
 /*Funtions to use for pneumatics
