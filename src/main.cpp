@@ -257,38 +257,27 @@ void opcontrol() {
   bool l1_pressed=master.get_digital(DIGITAL_L1);
   bool l2_pressed=master.get_digital(DIGITAL_L2);
     //R1/R2: control single intake motor (full power)
-if(r1_pressed){ 
+if(r1_pressed && !r2_pressed && !l1_pressed && !l2_pressed){ 
   setIntake(-127); //Intakes balls 
 
 }
-if(r2_pressed){ //outtake balls out of bottom
+else if(r2_pressed && !l1_pressed && !l2_pressed){ //outtake balls out of bottom
   setIntake(127);//full reverse
   setOuttake(127);
 }
 //stop
-else{
-  setIntake(0);
-  setOuttake(0);
-}
-
-
-//L1
-
-if(l1_pressed){// Spining the top two motors to score on long goal
-  setOuttake(127); //going out
+else if(l1_pressed){
   setIntake(-127);
+  setOuttake(127);
 }
-else if(l2_pressed){// scores mid goal
+else if(l2_pressed){
   setOuttake(127);
   setIntake(-127);
   setMidGoal(true);
 }
 else{
-  //smart stopping only stop outtake if R2 isnt controlling them
-  if(!r2_pressed){
-    setOuttake(0);
-  
-  }
+  setIntake(0);
+  setOuttake(0);
   setMidGoal(false);
 }
 

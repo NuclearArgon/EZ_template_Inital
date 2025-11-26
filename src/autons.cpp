@@ -100,12 +100,10 @@ void rfbb() {
 
   //step 6 outtake all blocks by reversing intake because of how the bot is shaped
   setIntake(127);
-  setOuttakeMid(-127);
-  setOuttakeTop(-127);
+  setOuttake(-127);
   pros::delay(2000); //run outtake for 2 seconds
   setIntake(0);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
+  setOuttake(0);
   chassis.pid_wait_quick_chain();
 
   //backup from goal
@@ -151,12 +149,10 @@ void rfbb() {
   chassis.pid_wait_quick_chain();
 
   //step 14 outtake and score in long goal 
-  toggleBallBlocker();
-  setOuttakeMid(127);
-  setOuttakeTop(127);
+  toggleDescore();
+  setOuttake(127);
   pros::delay(2000);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
+  setOuttake(0);
   setIntake(0);
   chassis.pid_wait();
 
@@ -195,13 +191,11 @@ void rbbf() { // stands for red back, blue front
 
   
   //score in goals
-  toggleBallBlocker2(); //up
-  setOuttakeMid(127);
-  setOuttakeTop(-127);
+  setMidGoal(true); //up
+  setOuttake(127);
   pros::delay(2000);
-   setOuttakeMid(0);
-  setOuttakeTop(0);
-  toggleBallBlocker2();
+  setOuttake(0);
+  setMidGoal(false);
   chassis.pid_wait();
 
   chassis.pid_drive_set(35_in, DRIVE_SPEED, true);
@@ -234,13 +228,11 @@ void rbbf() { // stands for red back, blue front
   chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  //step 14 outtake and score in long goal 
-  toggleBallBlocker();
-  setOuttakeMid(127);
-  setOuttakeTop(127);
+  //step 14 outtake and score in long goal
+  toggleDescore();
+  setOuttake(127);
   pros::delay(3000);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
+  setOuttake(0);
   setIntake(0);
   chassis.pid_wait();
 
@@ -273,13 +265,11 @@ void skills() {
   chassis.pid_wait();
 
   //score in long goal
-  toggleBallBlocker();
-  setOuttakeMid(127);
-  setOuttakeTop(127);
+  toggleDescore();
+  setOuttake(127);
   pros::delay(3000);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
-  toggleBallBlocker();
+  setOuttake(0);
+  toggleDescore();
   chassis.pid_wait();
 
   //backup from the long goal and go back to match loader
@@ -293,13 +283,11 @@ void skills() {
 
   //score in long goal again
   chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
-  toggleBallBlocker();
-  setOuttakeMid(127);
-  setOuttakeTop(127);
+  toggleDescore();
+  setOuttake(127);
   pros::delay(3000);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
-  toggleBallBlocker();
+  setOuttake(0);
+  toggleDescore();
   chassis.pid_wait();
 
   //back up from match loader again and get ready to go to west side
@@ -342,15 +330,13 @@ void skills() {
   chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  //step 14 outtake and score in long goal 
-  toggleBallBlocker();
-  setOuttakeMid(127);
-  setOuttakeTop(127);
+  //step 14 outtake and score in long goal
+  toggleDescore();
+  setOuttake(127);
   pros::delay(3000);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
+  setOuttake(0);
   setIntake(0);
-  toggleBallBlocker();
+  toggleDescore();
   chassis.pid_wait();
 
   //backup from the long goal and go back to match loader
@@ -365,13 +351,11 @@ void skills() {
   chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  toggleBallBlocker();
-  setOuttakeMid(127);
-  setOuttakeTop(127);
+  toggleDescore();
+  setOuttake(127);
   pros::delay(3000);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
-  toggleBallBlocker();
+  setOuttake(0);
+  toggleDescore();
   chassis.pid_wait();
 
   //back up from match loader again and get ready to go to west side
@@ -425,13 +409,11 @@ void skills() {
   chassis.pid_wait();
 
   //score in long goal
-  toggleBallBlocker();
-  setOuttakeMid(127);
-  setOuttakeTop(127);
+  toggleDescore();
+  setOuttake(127);
   pros::delay(3000);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
-  toggleBallBlocker();
+  setOuttake(0);
+  toggleDescore();
   chassis.pid_wait();
 
   //backup from the long goal and go back to match loader
@@ -445,13 +427,11 @@ void skills() {
 
   //score in long goal again
   chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
-  toggleBallBlocker();
-  setOuttakeMid(127);
-  setOuttakeTop(127);
+  toggleDescore();
+  setOuttake(127);
   pros::delay(3000);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
-  toggleBallBlocker();
+  setOuttake(0);
+  toggleDescore();
   chassis.pid_wait();
 
   //back up from long goal again and get ready to go to east side
@@ -490,15 +470,13 @@ void skills() {
   chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  //step 14 outtake and score in long goal 
-  toggleBallBlocker();
-  setOuttakeMid(127);
-  setOuttakeTop(127);
+  //step 14 outtake and score in long goal
+  toggleDescore();
+  setOuttake(127);
   pros::delay(3000);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
+  setOuttake(0);
   setIntake(0);
-  toggleBallBlocker();
+  toggleDescore();
   chassis.pid_wait();
 
   //backup from the long goal and go back to match loader
@@ -513,13 +491,11 @@ void skills() {
   chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
-  toggleBallBlocker();
-  setOuttakeMid(127);
-  setOuttakeTop(127);
+  toggleDescore();
+  setOuttake(127);
   pros::delay(3000);
-  setOuttakeMid(0);
-  setOuttakeTop(0);
-  toggleBallBlocker();
+  setOuttake(0);
+  toggleDescore();
   chassis.pid_wait();
 
   //back up from match loader again and get ready to go to west side
@@ -558,9 +534,9 @@ void backup() {
 }
 
 void bs(){
-  setOuttakeTop(-127);
+  setOuttake(-127);
   pros::delay(2000);
-  setOuttakeTop(0);
+  setOuttake(0);
   chassis.pid_wait();
 }
 ///
