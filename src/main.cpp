@@ -263,11 +263,10 @@ if(r1_pressed && !r2_pressed && !l1_pressed && !l2_pressed){
 }
 else if(r2_pressed && !l1_pressed && !l2_pressed){ //outtake balls out of bottom
   setIntake(127);//full reverse
-  setOuttake(127);
+  setOuttake(-127);
 }
 //stop
 else if(l1_pressed){
-  setIntake(-127);
   setOuttake(127);
 }
 else if(l2_pressed){

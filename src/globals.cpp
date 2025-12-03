@@ -6,9 +6,9 @@ pros::Motor intake_motor(1,pros::v5::MotorGears::blue); //For single intake moto
 pros::Motor outtake_motor(10, pros::v5::MotorGears::blue); // Top outtake port 4
 
 //Pneumatics
-pros::adi::Pneumatics match_loader('A',false); // Match loader mechanism
-pros::adi::Pneumatics mid_goal('B',false); // To stop the balls from coming out the top
-pros::adi::Pneumatics Descore('C',false); // this is the desco
+pros::adi::Pneumatics match_loader('B',false); // Match loader mechanism
+pros::adi::Pneumatics mid_goal('C',false); // To stop the balls from coming out the top
+pros::adi::Pneumatics Descore('A',false); // this is the desco
 /*Funtions to use for pneumatics
 match_loader.extend();
 matchloader.retract();
