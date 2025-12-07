@@ -69,8 +69,8 @@ void rfbb() {
 //West = 270°
 
 
-//Step 1: Drive forward from park zone to line up with balls on right side
-  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+//step 1 drive forward to line up with balls on ground
+   chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
   setIntake(-127); 
   chassis.pid_wait_quick_chain();
 
@@ -79,54 +79,42 @@ void rfbb() {
   chassis.pid_wait_quick_chain();
   
 
-  
-  chassis.pid_drive_set(30_in, 30, true);
-  //toggleMatchLoader();
+  //start intake and drive at full speed for whatever many inches
+  chassis.pid_drive_set(18_in, 20, true);
   chassis.pid_wait_quick_chain();
 
-  chassis.pid_drive_set(-19_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-6_in, 70, true);
   chassis.pid_wait();
   
 
   // Step 4 turn:  degrees towards center goal
   chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
   setIntake(0);
-  //toggleMatchLoader();
   chassis.pid_wait_quick_chain();
 
+  
   //step 5: Drive forward to scoring postion
-  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
-  chassis.pid_wait_quick_chain();
-
-  //step 6 outtake all blocks by reversing intake because of how the bot is shaped
-  setIntake(127);
-  setOuttake(-127);
-  pros::delay(2000); //run outtake for 2 seconds
-  setIntake(0);
-  setOuttake(0);
-  chassis.pid_wait_quick_chain();
-
-  //backup from goal
-  chassis.pid_drive_set(-5_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  //step 7 turn towards match loader
-  chassis.pid_turn_relative_set(180, TURN_SPEED);
+  chassis.pid_drive_set(-11_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   
-
-
-  //step 9 drive towards match loader but get ready for square up turn
-  chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
+  //score in goals
+  setMidGoal(true); //up
+  setOuttake(127);
+  pros::delay(2000);
+  setOuttake(0);
+  setMidGoal(false);
   chassis.pid_wait();
 
-  //step   turn to make partial square up
-  chassis.pid_turn_set(90, TURN_SPEED); //very confusing degree add up
+  chassis.pid_drive_set(35_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+ //step   turn to make partial square up
+  chassis.pid_turn_set(-90, TURN_SPEED); //very confusing degree add up
   chassis.pid_wait();
 
   //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(9_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(3.5_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step  face match loader head on
@@ -136,26 +124,25 @@ void rfbb() {
 
   // step   drive forward to match loader
   chassis.pid_drive_set(16_in, 50, true);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
 
 
   //step 10 intake from match loader
   setIntake(-127);
   pros::delay(1000);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_wait();
 
   //drive towards long goal
-  chassis.pid_drive_set(-23_in, DRIVE_SPEED, true);
-  chassis.pid_wait_quick_chain();
+  chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
 
-  //step 14 outtake and score in long goal 
+  //step 14 outtake and score in long goal
   toggleDescore();
   setOuttake(127);
-  pros::delay(2000);
+  pros::delay(3000);
   setOuttake(0);
   setIntake(0);
   chassis.pid_wait();
-
 }
 
 
