@@ -281,15 +281,15 @@ else{
   setMidGoal(false);
 }
 
- 
-
 //pneumatics
-if(master.get_digital_new_press(DIGITAL_Y)){ //only going to use one button press until you let go NEED
+if(master.get_digital_new_press(DIGITAL_RIGHT)){ //only going to use one button press until you let go NEED
   toggleMatchLoader();
 }
 
-if(master.get_digital_new_press(DIGITAL_RIGHT)){ //changed from L1 to down
+if(master.get_digital_new_press(DIGITAL_Y)){ //changed from L1 to down
   toggleDescore();
+
+  
 }
 
 
