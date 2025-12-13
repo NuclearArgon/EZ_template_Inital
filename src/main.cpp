@@ -238,6 +238,12 @@ void opcontrol() {
   //check button states first to prevent conflicts
 
 
+
+  /*L1 does top stage and mid
+  l2 same as l1 but activates pnematic
+  r1 is intaking
+  r2 outtke bottom
+  */
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
@@ -267,7 +273,7 @@ else if(r2_pressed && !l1_pressed && !l2_pressed){ //outtake balls out of bottom
 }
 //stop
 else if(l1_pressed){
-  setIntake(-127);//full reverse
+  setIntake(-127);
   setOuttake(127);
 }
 else if(l2_pressed){

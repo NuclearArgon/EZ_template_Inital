@@ -179,8 +179,10 @@ void rbbf() { // stands for red back, blue front
   
   //score in goals
   setMidGoal(true); //up
+  setIntake(-127);
   setOuttake(127);
   pros::delay(2000);
+  setOuttake(0);
   setOuttake(0);
   setMidGoal(false);
   chassis.pid_wait();
@@ -193,7 +195,7 @@ void rbbf() { // stands for red back, blue front
   chassis.pid_wait();
 
   //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(3.5_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(9_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step  face match loader head on
@@ -202,21 +204,23 @@ void rbbf() { // stands for red back, blue front
   chassis.pid_wait();
 
   // step   drive forward to match loader
-  chassis.pid_drive_set(16_in, 50, true);
+  chassis.pid_drive_set(16.3_in, 50, true);
   chassis.pid_wait();
 
 
   //step 10 intake from match loader
   setIntake(-127);
-  pros::delay(1000);
+  pros::delay(500);
+  setIntake(0);
   chassis.pid_wait();
 
   //drive towards long goal
-  chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-27_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step 14 outtake and score in long goal
-  toggleDescore();
+ 
+  setIntake(-127);
   setOuttake(127);
   pros::delay(3000);
   setOuttake(0);
