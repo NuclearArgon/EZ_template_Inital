@@ -70,7 +70,7 @@ void rfbb() {
 
 
 //step 1 drive forward to line up with balls on ground
-   chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
   setIntake(-127); 
   chassis.pid_wait_quick_chain();
 
@@ -88,7 +88,7 @@ void rfbb() {
   
 
   // Step 4 turn:  degrees towards center goal
-  chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
+  chassis.pid_turn_relative_set(90, TURN_SPEED); // face middle goal
   setIntake(0);
   chassis.pid_wait_quick_chain();
 
@@ -99,22 +99,28 @@ void rfbb() {
 
   
   //score in goals
-  setMidGoal(true); //up
-  setOuttake(127);
+  setIntake(127);//full reverse
+  setOuttake(-127);
   pros::delay(2000);
   setOuttake(0);
-  setMidGoal(false);
+  setIntake(0);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(35_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-5_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  chassis.pid_turn_relative_set(180, TURN_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
  //step   turn to make partial square up
-  chassis.pid_turn_set(-90, TURN_SPEED); //very confusing degree add up
+  chassis.pid_turn_set(90, TURN_SPEED); //very confusing degree add up
   chassis.pid_wait();
 
   //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(3.5_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(9_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step  face match loader head on
@@ -123,21 +129,23 @@ void rfbb() {
   chassis.pid_wait();
 
   // step   drive forward to match loader
-  chassis.pid_drive_set(16_in, 50, true);
+  chassis.pid_drive_set(16.3_in, 50, true);
   chassis.pid_wait();
 
 
   //step 10 intake from match loader
   setIntake(-127);
-  pros::delay(1000);
+  pros::delay(500);
+  setIntake(0);
   chassis.pid_wait();
 
   //drive towards long goal
-  chassis.pid_drive_set(-25_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-27_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step 14 outtake and score in long goal
-  toggleDescore();
+ 
+  setIntake(-127);
   setOuttake(127);
   pros::delay(3000);
   setOuttake(0);
@@ -150,7 +158,7 @@ void rfbb() {
 void rbbf() { // stands for red back, blue front
  //step 1 drive forward to line up with balls on ground
    chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-  setIntake(-127); 
+   setIntake(-127); 
   chassis.pid_wait_quick_chain();
 
   
