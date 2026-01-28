@@ -2,8 +2,8 @@
 
 
 //motors
-pros::Motor intake_motor(1,pros::v5::MotorGears::blue); //For single intake motor on port 4- R1/R2 control
-pros::Motor outtake_motor(10, pros::v5::MotorGears::blue); // Top outtake port 4
+pros::Motor intake_motor(-8,pros::v5::MotorGears::blue); //For single intake motor on port 4- R1/R2 control
+pros::Motor outtake_motor(9, pros::v5::MotorGears::blue); // Top outtake port 4
 
 //Pneumatics
 pros::adi::Pneumatics match_loader('B',false); // Match loader mechanism
