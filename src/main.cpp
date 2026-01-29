@@ -8,12 +8,12 @@
 // Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {-13, -14, -15},     // Left Chassis Ports (negative port will reverse it!)
-    {16, 17, 18},  // Right Chassis Ports (negative port will reverse it!)
+    {-1, -2, -3},     // Left Chassis Ports (negative port will reverse it!)
+    {4, 5, 6},  // Right Chassis Ports (negative port will reverse it!)
 
     12,      // IMU Port
     3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
-    450);   // Wheel RPM = cartridge * (motor gear / wheel gear)
+    350);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
 // Uncomment the trackers you're using here!
 // - `8` and `9` are smart ports (making these negative will reverse the sensor)
@@ -265,7 +265,24 @@ void opcontrol() {
   bool r2_pressed=master.get_digital(DIGITAL_R2);
   bool l1_pressed=master.get_digital(DIGITAL_L1);
   bool l2_pressed=master.get_digital(DIGITAL_L2);
-    //R1/R2: control single intake motor (full power)
+
+if(r1_pressed){
+  setIntake(-127);
+}
+if(r2_pressed){
+  setIntake(127);
+
+}
+if(l1_pressed){
+  setOuttake(127);
+
+}
+if(l2_pressed){
+  setOuttake(-127);
+
+}
+
+/*    //R1/R2: control single intake motor (full power)
 if(r1_pressed && !r2_pressed && !l1_pressed && !l2_pressed){ 
   setIntake(-127); //Intakes balls 
 
@@ -289,13 +306,14 @@ else{
   setOuttake(0);
   setMidGoal(false);
 }
+*/
 
 //pneumatics
-if(master.get_digital_new_press(DIGITAL_RIGHT)){ //only going to use one button press until you let go NEED
+if(master.get_digital_new_press(DIGITAL_A)){ //only going to use one button press until you let go NEED
   toggleMatchLoader();
 }
 
-if(master.get_digital_new_press(DIGITAL_Y)){ //changed from L1 to down
+if(master.get_digital_new_press(DIGITAL_X)){ //changed from L1 to down
   toggleDescore();
 
   
