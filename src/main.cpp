@@ -266,22 +266,27 @@ void opcontrol() {
   bool l1_pressed=master.get_digital(DIGITAL_L1);
   bool l2_pressed=master.get_digital(DIGITAL_L2);
 
-if(r1_pressed){
-  setIntake(-127);
-}
+// Intake motor control - R2 (outtake) takes priority over R1 (intake)
 if(r2_pressed){
-  setIntake(127);
-
+  setIntake(127);    // Outtake balls from bottom
 }
-if(l1_pressed){
-  setOuttake(127);
-
+else if(r1_pressed){
+  setIntake(-127);   // Intake balls
 }
+else {
+  setIntake(0);      // Stop when neither pressed
+}
+
+// Outtake motor control - L2 (reverse) takes priority over L1 (forward)
 if(l2_pressed){
-  setOuttake(-127);
-
+  setOuttake(-127);  // Reverse outtake
 }
-
+else if(l1_pressed){
+  setOuttake(127);   // Forward outtake
+}
+else {
+  setOuttake(0);     // Stop when neither pressed
+}
 /*    //R1/R2: control single intake motor (full power)
 if(r1_pressed && !r2_pressed && !l1_pressed && !l2_pressed){ 
   setIntake(-127); //Intakes balls 
