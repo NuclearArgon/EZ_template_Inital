@@ -60,9 +60,12 @@ void initialize() {
   ez::as::auton_selector.autons_add({
       {"Red Front, Blue Back\n\nRed right and Blue right", rfbb}, //rfbb stands for red front, blue back
       {"Red Back, Blue Front\n\nRed left and Blue left.", rbbf},  // stands for red back, blue front
-      {"Skills Auton\n\nDo this to win skills auto baby", skills}, 
+      {"Skills Auton\n\nSkills Auton", skills},
+      {"PID Test\n\nTesting drive 10in + turn 360deg", pid_test},
       {"Basic drive forward\n\nThis is back up if they have good auto I guess?", backup},
       {"Backup Skills\n\nThis is The back up for skills", bs},
+      {"Solo Win Point\n\nSolo Auton Win Point", sw},
+
 
   });
 

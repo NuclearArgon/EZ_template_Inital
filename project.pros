@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "Coder Carried",
+    "project_name": "Alex's Code",
     "target": "v5",
     "templates": {
       "EZ-Template": {
@@ -426,7 +426,7 @@
     "upload_options": {
       "description": "roboticsisez.com",
       "slot": 1,
-      "icon": "alien"
+      "icon": "pros"
     },
     "use_early_access": false
   }
