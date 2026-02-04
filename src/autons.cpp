@@ -88,7 +88,7 @@ void rfbb() {
   
 
   // Step 4 turn:  degrees towards center goal
-  /*chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
+  chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
   setIntake(0);
   chassis.pid_wait_quick_chain();
 
@@ -114,7 +114,7 @@ void rfbb() {
 
   chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
   chassis.pid_wait();
-*/
+
 
   chassis.pid_turn_relative_set(90, TURN_SPEED);
   chassis.pid_wait();
