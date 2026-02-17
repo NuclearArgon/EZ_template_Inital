@@ -51,7 +51,7 @@ void default_constants() {
 ///
 // Drive Example
 ///
-void rfbb() { 
+void rfbb() { //right side
   // The first parameter is target inches
   // The second parameter is max speed the robot will drive at
   // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
@@ -70,17 +70,17 @@ void rfbb() {
 
 
 //step 1 drive forward to line up with balls on ground
-  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-  setIntake(-127); 
-  chassis.pid_wait_quick_chain();
+ chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+ setIntake(127); 
+ chassis.pid_wait_quick_chain();
 
-  
+
   chassis.pid_turn_set(45, TURN_SPEED);
   chassis.pid_wait_quick_chain();
   
-
-  //start intake and drive at full speed for whatever many inches
-  chassis.pid_drive_set(18_in, 20, true);
+  
+//start intake and drive at full speed for whatever many inches
+  chassis.pid_drive_set(20_in, 30, true);
   chassis.pid_wait_quick_chain();
 
   chassis.pid_drive_set(-7_in, 70, true);
@@ -88,47 +88,37 @@ void rfbb() {
   
 
   // Step 4 turn:  degrees towards center goal
-  chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
+  /*chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
   setIntake(0);
   chassis.pid_wait_quick_chain();
 
   
-  //step 5: Drive forward to scoring postion
-  chassis.pid_drive_set(11_in, DRIVE_SPEED, true);
+ //step 5: Drive forward to scoring postion
+  chassis.pid_drive_set(15_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   
   //score in goals
-  setIntake(127);//full reverse
-  setOuttake(-127);
+  setIntake(-127);//full reverse
+  setOuttake(127);
   pros::delay(2000);
   setOuttake(0);
   setIntake(0);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(-5_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
+  chassis.pid_drive_set(-6_in, DRIVE_SPEED, true);
+  chassis.pid_wait();*/
 
-  chassis.pid_turn_relative_set(180, TURN_SPEED);
+  chassis.pid_turn_relative_set(90, TURN_SPEED);
   chassis.pid_wait();
 
   chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
 
-  chassis.pid_turn_relative_set(90, TURN_SPEED);
+  chassis.pid_turn_set(90, TURN_SPEED);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(24, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
- //step   turn to make partial square up
-  chassis.pid_turn_set(90, TURN_SPEED); //very confusing degree add up
-  chassis.pid_wait();
-
-  //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(9_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
 
   //step  face match loader head on
   chassis.pid_turn_set(180, TURN_SPEED);
@@ -136,28 +126,29 @@ void rfbb() {
   chassis.pid_wait();
 
   // step   drive forward to match loader
-  chassis.pid_drive_set(16.3_in, 50, true);
+  chassis.pid_drive_set(18_in, 50, true);
   chassis.pid_wait();
 
 
   //step 10 intake from match loader
-  setIntake(-127);
-  pros::delay(450);
+  setIntake(127);
+  pros::delay(2500);
   setIntake(0);
   chassis.pid_wait();
 
   //drive towards long goal
-  chassis.pid_drive_set(-27_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-29_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step 14 outtake and score in long goal
  
-  setIntake(-127);
-  setOuttake(127);
-  pros::delay(3000);
+  setIntake(127);
+  setOuttake(-127);
+  pros::delay(4000);
   setOuttake(0);
   setIntake(0);
   chassis.pid_wait();
+
 }
 
 
@@ -165,7 +156,7 @@ void rfbb() {
 void rbbf() { // stands for red back, blue front
  //step 1 drive forward to line up with balls on ground
    chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-   setIntake(-127); 
+   setIntake(127); 
   chassis.pid_wait_quick_chain();
 
   
@@ -174,10 +165,10 @@ void rbbf() { // stands for red back, blue front
   
 
   //start intake and drive at full speed for whatever many inches
-  chassis.pid_drive_set(18_in, 20, true);
+  chassis.pid_drive_set(18_in, 30, true);
   chassis.pid_wait_quick_chain();
 
-  chassis.pid_drive_set(-6_in, 70, true);
+  chassis.pid_drive_set(-5_in, 70, true);
   chassis.pid_wait();
   
 
@@ -188,18 +179,16 @@ void rbbf() { // stands for red back, blue front
 
   
   //step 5: Drive forward to scoring postion
-  chassis.pid_drive_set(-12_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(-20_in, DRIVE_SPEED, true);
   chassis.pid_wait();
-
   
   //score in goals
-  setMidGoal(true); //up
-  setIntake(-127);
-  setOuttake(80);
-  pros::delay(2000);
+ //up
+  setIntake(127);
+  setOuttake(-80);
+  pros::delay(3000);
   setOuttake(0);
   setOuttake(0);
-  setMidGoal(false);
   chassis.pid_wait();
 
   chassis.pid_drive_set(36_in, DRIVE_SPEED, true);
@@ -210,7 +199,7 @@ void rbbf() { // stands for red back, blue front
   chassis.pid_wait();
 
   //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(9_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
   chassis.pid_wait();
 
   //step  face match loader head on
@@ -219,13 +208,13 @@ void rbbf() { // stands for red back, blue front
   chassis.pid_wait();
 
   // step   drive forward to match loader
-  chassis.pid_drive_set(16_in, 50, true);
+  chassis.pid_drive_set(18_in, 50, true);
   chassis.pid_wait();
 
 
   //step 10 intake from match loader
-  setIntake(-127);
-  pros::delay(100);
+  setIntake(127);
+  pros::delay(2500);
   setIntake(0);
   chassis.pid_wait();
 
@@ -235,8 +224,8 @@ void rbbf() { // stands for red back, blue front
 
   //step 14 outtake and score in long goal
  
-  setIntake(-127);
-  setOuttake(127);
+  setIntake(127);
+  setOuttake(-127);
   pros::delay(3000);
   setOuttake(0);
   setIntake(0);
@@ -499,16 +488,16 @@ void sw() {
 ///
 void pid_test() {
   // Simple test: drive 10 inches forward, wait, turn 360 degrees
-  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+  chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
   chassis.pid_wait();
   
   pros::delay(2000); // Wait 2 seconds so you can measure the distance
   
   // Turn 360 degrees - should end up facing the same direction
-  chassis.pid_turn_set(360, TURN_SPEED);
+  chassis.pid_turn_set(180_deg, TURN_SPEED);
   chassis.pid_wait();
   
-  pros::delay(2000); // Wait 2 seconds so you can see the final heading
+   // Wait 2 seconds so you can see the final heading
 }
 
 ///

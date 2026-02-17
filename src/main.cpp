@@ -11,7 +11,7 @@ ez::Drive chassis(
     {-4, -5, -6},     // Left Chassis Ports (negative port will reverse it!)
     {1, 2, 3},        // Right Chassis Ports (negative port will reverse it!)
 
-    9,      // IMU Port
+    11,      // IMU Port
     3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
     350);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
@@ -314,13 +314,12 @@ else{
 */
 
 //pneumatics
-if(master.get_digital_new_press(DIGITAL_A)){ //only going to use one button press until you let go NEED
+if(master.get_digital_new_press(DIGITAL_Y)){ //only going to use one button press until you let go NEED
   toggleMatchLoader();
 }
 
-if(master.get_digital_new_press(DIGITAL_X)){ //changed from L1 to down
+if(master.get_digital_new_press(DIGITAL_B)){ //changed from L1 to down
   toggleDescore();
-
   
 }
 
