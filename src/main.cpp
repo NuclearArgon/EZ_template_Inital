@@ -52,6 +52,9 @@ void initialize() {
   // Set the drive to your own constants from autons.cpp!
   default_constants();
 
+  lift_motors.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD); // lift stays where it stops (auton and driver)
+  claw_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);  // claw stays where it stops (auton and driver)
+
   // These are already defaulted to these buttons, but you can change the left/right curve buttons here!
   // chassis.opcontrol_curve_buttons_left_set(pros::E_CONTROLLER_DIGITAL_LEFT, pros::E_CONTROLLER_DIGITAL_RIGHT);  // If using tank, only the left side is used.
   // chassis.opcontrol_curve_buttons_right_set(pros::E_CONTROLLER_DIGITAL_Y, pros::E_CONTROLLER_DIGITAL_A);
@@ -237,8 +240,6 @@ void ez_template_extras() {
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_BRAKE);
-  lift_motors.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD); // lift stays where it stops
-  claw_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);  // claw stays where it stops
   bool claw_open = false; // claw starts closed, R2 toggles it
   int claw_timer = 0;     // counts down while the claw runs at full power
 

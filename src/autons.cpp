@@ -52,103 +52,103 @@ void default_constants() {
 // Drive Example
 ///
 void rfbb() { //right side
-//  // The first parameter is target inches
-//  // The second parameter is max speed the robot will drive at
-//  // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
-//  // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
-//
-////we are starting 14.86 inches from the wall
-////rfbb stands for red front, blue back
-//
-//
-//// keep in mind the length is 15.5 inches and the width is 14.6, so it starts (from the front of the robot 30.36 inches away from wall.
-//
-////North = 0°
-////East = 90°
-////South = 180°
-////West = 270°
-//
-//
-////step 1 drive forward to line up with balls on ground
-// chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-// setClaw(127); 
-// chassis.pid_wait_quick_chain();
-//
-//
-//  chassis.pid_turn_set(45, TURN_SPEED);
-//  chassis.pid_wait_quick_chain();
-//  
-//  
-////start intake and drive at full speed for whatever many inches
-//  chassis.pid_drive_set(20_in, 30, true);
-//  chassis.pid_wait_quick_chain();
-//
-//  chassis.pid_drive_set(-7_in, 70, true);
-//  chassis.pid_wait();
-//  
-//
-//  // Step 4 turn:  degrees towards center goal
-//  /*chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
-//  setClaw(0);
-//  chassis.pid_wait_quick_chain();
-//
-//  
-// //step 5: Drive forward to scoring postion
-//  chassis.pid_drive_set(15_in, DRIVE_SPEED, true);
-//  chassis.pid_wait();
-//
-//  
-//  //score in goals
-//  setClaw(-127);//full reverse
-//  setLift(127);
-//  pros::delay(2000);
-//  setLift(0);
-//  setClaw(0);
-//  chassis.pid_wait();
-//
-//  chassis.pid_drive_set(-6_in, DRIVE_SPEED, true);
-//  chassis.pid_wait();*/
-//
-//  chassis.pid_turn_relative_set(90, TURN_SPEED);
-//  chassis.pid_wait();
-//
-//  chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
-//  chassis.pid_wait();
-//
-//
-//  chassis.pid_turn_set(90, TURN_SPEED);
-//  chassis.pid_wait();
-//
-//
-//  //step  face match loader head on
-//  chassis.pid_turn_set(180, TURN_SPEED);
-//  toggleMatchLoader();
-//  chassis.pid_wait();
-//
-//  // step   drive forward to match loader
-//  chassis.pid_drive_set(18_in, 50, true);
-//  chassis.pid_wait();
-//
-//
-//  //step 10 intake from match loader
-//  setClaw(127);
-//  pros::delay(2500);
-//  setClaw(0);
-//  chassis.pid_wait();
-//
-//  //drive towards long goal
-//  chassis.pid_drive_set(-29_in, DRIVE_SPEED, true);
-//  chassis.pid_wait();
-//
-//  //step 14 outtake and score in long goal
-// 
-//  setClaw(127);
-//  setLift(-127);
-//  pros::delay(4000);
-//  setLift(0);
-//  setClaw(0);
-//  chassis.pid_wait();
-//
+  // The first parameter is target inches
+  // The second parameter is max speed the robot will drive at
+  // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
+  // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
+
+//we are starting 14.86 inches from the wall
+//rfbb stands for red front, blue back
+
+
+// keep in mind the length is 15.5 inches and the width is 14.6, so it starts (from the front of the robot 30.36 inches away from wall.
+
+//North = 0°
+//East = 90°
+//South = 180°
+//West = 270°
+
+
+//step 1 drive forward to line up with balls on ground
+ chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+ setClaw(127); 
+ chassis.pid_wait_quick_chain();
+
+
+  chassis.pid_turn_set(45, TURN_SPEED);
+  chassis.pid_wait_quick_chain();
+  
+  
+//start intake and drive at full speed for whatever many inches
+  chassis.pid_drive_set(20_in, 30, true);
+  chassis.pid_wait_quick_chain();
+
+  chassis.pid_drive_set(-7_in, 70, true);
+  chassis.pid_wait();
+  
+
+  // Step 4 turn:  degrees towards center goal
+  /*chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
+  setClaw(0);
+  chassis.pid_wait_quick_chain();
+
+  
+ //step 5: Drive forward to scoring postion
+  chassis.pid_drive_set(15_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  
+  //score in goals
+  setClaw(-127);//full reverse
+  setLift(127);
+  pros::delay(2000);
+  setLift(0);
+  setClaw(0);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-6_in, DRIVE_SPEED, true);
+  chassis.pid_wait();*/
+
+  chassis.pid_turn_relative_set(90, TURN_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+
+  chassis.pid_turn_set(90, TURN_SPEED);
+  chassis.pid_wait();
+
+
+  //step  face match loader head on
+  chassis.pid_turn_set(180, TURN_SPEED);
+  toggleMatchLoader();
+  chassis.pid_wait();
+
+  // step   drive forward to match loader
+  chassis.pid_drive_set(18_in, 50, true);
+  chassis.pid_wait();
+
+
+  //step 10 intake from match loader
+  setClaw(127);
+  pros::delay(2500);
+  setClaw(0);
+  chassis.pid_wait();
+
+  //drive towards long goal
+  chassis.pid_drive_set(-29_in, DRIVE_SPEED, true);
+  chassis.pid_wait();
+
+  //step 14 outtake and score in long goal
+ 
+  setClaw(127);
+  setLift(-127);
+  pros::delay(4000);
+  setLift(0);
+  setClaw(0);
+  chassis.pid_wait();
+
 }
 
 
