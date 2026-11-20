@@ -1,8 +1,8 @@
 #include "main.h"
 
-//Intake and Outtake
-void setIntake(int intakePower);
-void setOuttake(int outtakePower);
+//Claw and Lift
+void setClaw(int clawPower);
+void setLift(int liftPower);
 
 
 //Pneumatics

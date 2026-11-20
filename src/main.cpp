@@ -8,18 +8,18 @@
 // Chassis constructor
 ez::Drive chassis(
     // These are your drive motors, the first motor is used for sensing!
-    {-4, -5, -6},     // Left Chassis Ports (negative port will reverse it!)
-    {1, 2, 3},        // Right Chassis Ports (negative port will reverse it!)
+    {-19, -20},     // Left Chassis Ports (negative port will reverse it!)
+    {9, 10},        // Right Chassis Ports (negative port will reverse it!)
 
     11,      // IMU Port
     3.25,  // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
-    350);   // Wheel RPM = cartridge * (motor gear / wheel gear)
+    360);   // Wheel RPM = cartridge * (motor gear / wheel gear)
 
 // Uncomment the trackers you're using here!
 // - `8` and `9` are smart ports (making these negative will reverse the sensor)
 //  - you should get positive values on the encoders going FORWARD and RIGHT
-// - `2.75` is the wheel diameter
-// - `4.0` is the distance from the center of the wheel to the center of the robot
+// - `2.75` is the wheel diameters
+// - `4.0` is the distance from the center of thse wheel to the center of the robot
 // ez::tracking_wheel horiz_tracker(8, 2.75, 4.0);  // This tracking wheel is perpendicular to the drive wheels
 // ez::tracking_wheel vert_tracker(9, 2.75, 4.0);   // This tracking wheel is parallel to the drive wheels
 
@@ -237,6 +237,10 @@ void ez_template_extras() {
 void opcontrol() {
   // This is preference to what you like to drive on
   chassis.drive_brake_set(MOTOR_BRAKE_BRAKE);
+  lift_motors.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD); // lift stays where it stops
+  claw_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);  // claw stays where it stops
+  bool claw_open = false; // claw starts closed, R2 toggles it
+  int claw_timer = 0;     // counts down while the claw runs at full power
 
   //check button states first to prevent conflicts
 
@@ -244,15 +248,15 @@ void opcontrol() {
 
   /*L1 does top stage and mid
   l2 same as l1 but activates pnematic
-  r1 is intaking
-  r2 outtke bottom
+  r2 toggles the claw open/closed
+  l1 lifts up, l2 lifts down, let go to brake where it is
   */
   while (true) {
     // Gives you some extras to make EZ-Template ezier
     ez_template_extras();
 
-    //chassis.opcontrol_tank();  // Tank control
-    chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
+    chassis.opcontrol_tank();  // Tank control
+    //chassis.opcontrol_arcade_standard(ez::SPLIT);   // Standard split arcade
     //chassis.opcontrol_arcade_standard(ez::SINGLE);  // Standard single arcade
     //chassis.opcontrol_arcade_flipped(ez::SPLIT);    // Flipped split arcade
     // chassis.opcontrol_arcade_flipped(ez::SINGLE);   // Flipped single arcade
@@ -261,54 +265,60 @@ void opcontrol() {
     // Put more user control code here!
     // . . 
     
-  bool r1_pressed=master.get_digital(DIGITAL_R1);
-  bool r2_pressed=master.get_digital(DIGITAL_R2);
   bool l1_pressed=master.get_digital(DIGITAL_L1);
   bool l2_pressed=master.get_digital(DIGITAL_L2);
 
-// Intake motor control - R2 (outtake) takes priority over R1 (intake)
-if(r2_pressed){
-  setIntake(127);    // Outtake balls from bottom
-}
-else if(r1_pressed){
-  setIntake(-127);   // Intake balls
-}
-else {
-  setIntake(0);      // Stop when neither pressed
+// Claw motor control - press R2 to toggle open/closed
+if(master.get_digital_new_press(DIGITAL_R2)){ //only one press until you let go
+  claw_open = !claw_open;
+  claw_timer = 50; // 50 loops x 10ms = half a second at full power
 }
 
-// Outtake motor control - L2 (reverse) takes priority over L1 (forward)
-if(l2_pressed){
-  setOuttake(-127);  // Reverse outtake
+int claw_power = 30;   // light power to keep it open/gripping
+if(claw_timer > 0){
+  claw_power = 127;    // full power right after pressing so it moves fast
+  claw_timer--;
 }
-else if(l1_pressed){
-  setOuttake(127);   // Forward outtake
+
+if(claw_open){
+  setClaw(claw_power);     // Open claw
 }
 else {
-  setOuttake(0);     // Stop when neither pressed
+  setClaw(-claw_power);    // Close claw and keep gripping
 }
-/*    //R1/R2: control single intake motor (full power)
+
+// Lift motor control - L1 goes up, L2 goes down, let go to brake where it is
+if(l1_pressed){
+  setLift(-127);  // Lift up
+}
+else if(l2_pressed){
+  setLift(127);   // Lift down
+}
+else {
+  setLift(0);     // Stop and hold in place (brake is set to hold)
+}
+/*    //R1/R2: control claw motor (full power)
 if(r1_pressed && !r2_pressed && !l1_pressed && !l2_pressed){ 
-  setIntake(-127); //Intakes balls 
+  setClaw(-127); //Intakes balls 
 
 }
 else if(r2_pressed && !l1_pressed && !l2_pressed){ //outtake balls out of bottom
-  setIntake(127);//full reverse
-  setOuttake(-127);
+  setClaw(127);//full reverse
+  setLift(-127);
 }
 //stop
 else if(l1_pressed){
-  setIntake(-127);
-  setOuttake(127);
+  setClaw(-127);
+  setLift(127);
 }
 else if(l2_pressed){
-  setOuttake(127);
-  setIntake(-127);
+  setLift(127);
+  setClaw(-127);
   setMidGoal(true);
 }
 else{
-  setIntake(0);
-  setOuttake(0);
+  setClaw(0);
+  setLift(0);
   setMidGoal(false);
 }
 */

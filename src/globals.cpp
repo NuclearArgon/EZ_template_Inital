@@ -2,8 +2,8 @@
 
 
 //motors
-pros::Motor intake_motor(-8,pros::v5::MotorGears::blue); //For single intake motor on port 4- R1/R2 control
-pros::Motor outtake_motor(10, pros::v5::MotorGears::blue); // Top outtake port 4
+pros::Motor claw_motor(-17,pros::v5::MotorGears::blue); //Claw motor on port 17 - R2 toggle
+pros::MotorGroup lift_motors({18, -8}, pros::v5::MotorGears::blue); // Lift motors on ports 18 and 8 synced - L1/L2 control
 
 //Pneumatics
 pros::adi::Pneumatics match_loader('B',false); // Match loader mechanism
@@ -13,6 +13,6 @@ pros::adi::Pneumatics Descore('A',false); // this is the desco
 match_loader.extend();
 matchloader.retract();
 match_loader.toggle();
-If I need to know if pistion is up or down do
+If I need to know if pistion s..is up or down do
 match_loader.is_extend();
 */

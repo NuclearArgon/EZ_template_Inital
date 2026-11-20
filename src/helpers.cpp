@@ -1,20 +1,20 @@
 #include "main.h"
 
 
-//intake and outtake
-void setIntake(int intakePower){
-    intake_motor.move(intakePower);
+//claw and lift
+void setClaw(int clawPower){
+    claw_motor.move(clawPower);
 }
 
 
 
 
 //combined function incase whatever reason ig
-void setOuttake(int outtakePower){
-    outtake_motor.move(outtakePower);
+void setLift(int liftPower){
+    lift_motors.move(liftPower);
 }
-/* setIntake(127); to turn it on
-setIntake(0); to turn it off)*/
+/* setClaw(127); to turn it on
+setClaw(0); to turn it off)*/
 
 
 

@@ -52,186 +52,186 @@ void default_constants() {
 // Drive Example
 ///
 void rfbb() { //right side
-  // The first parameter is target inches
-  // The second parameter is max speed the robot will drive at
-  // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
-  // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
-
-//we are starting 14.86 inches from the wall
-//rfbb stands for red front, blue back
-
-
-// keep in mind the length is 15.5 inches and the width is 14.6, so it starts (from the front of the robot 30.36 inches away from wall.
-
-//North = 0°
-//East = 90°
-//South = 180°
-//West = 270°
-
-
-//step 1 drive forward to line up with balls on ground
- chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
- setIntake(127); 
- chassis.pid_wait_quick_chain();
-
-
-  chassis.pid_turn_set(45, TURN_SPEED);
-  chassis.pid_wait_quick_chain();
-  
-  
-//start intake and drive at full speed for whatever many inches
-  chassis.pid_drive_set(20_in, 30, true);
-  chassis.pid_wait_quick_chain();
-
-  chassis.pid_drive_set(-7_in, 70, true);
-  chassis.pid_wait();
-  
-
-  // Step 4 turn:  degrees towards center goal
-  /*chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
-  setIntake(0);
-  chassis.pid_wait_quick_chain();
-
-  
- //step 5: Drive forward to scoring postion
-  chassis.pid_drive_set(15_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  
-  //score in goals
-  setIntake(-127);//full reverse
-  setOuttake(127);
-  pros::delay(2000);
-  setOuttake(0);
-  setIntake(0);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(-6_in, DRIVE_SPEED, true);
-  chassis.pid_wait();*/
-
-  chassis.pid_turn_relative_set(90, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-
-  chassis.pid_turn_set(90, TURN_SPEED);
-  chassis.pid_wait();
-
-
-  //step  face match loader head on
-  chassis.pid_turn_set(180, TURN_SPEED);
-  toggleMatchLoader();
-  chassis.pid_wait();
-
-  // step   drive forward to match loader
-  chassis.pid_drive_set(18_in, 50, true);
-  chassis.pid_wait();
-
-
-  //step 10 intake from match loader
-  setIntake(127);
-  pros::delay(2500);
-  setIntake(0);
-  chassis.pid_wait();
-
-  //drive towards long goal
-  chassis.pid_drive_set(-29_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  //step 14 outtake and score in long goal
- 
-  setIntake(127);
-  setOuttake(-127);
-  pros::delay(4000);
-  setOuttake(0);
-  setIntake(0);
-  chassis.pid_wait();
-
+//  // The first parameter is target inches
+//  // The second parameter is max speed the robot will drive at
+//  // The third parameter is a boolean (true or false) for enabling/disabling a slew at the start of drive motions
+//  // for slew, only enable it when the drive distance is greater than the slew distance + a few inches
+//
+////we are starting 14.86 inches from the wall
+////rfbb stands for red front, blue back
+//
+//
+//// keep in mind the length is 15.5 inches and the width is 14.6, so it starts (from the front of the robot 30.36 inches away from wall.
+//
+////North = 0°
+////East = 90°
+////South = 180°
+////West = 270°
+//
+//
+////step 1 drive forward to line up with balls on ground
+// chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+// setClaw(127); 
+// chassis.pid_wait_quick_chain();
+//
+//
+//  chassis.pid_turn_set(45, TURN_SPEED);
+//  chassis.pid_wait_quick_chain();
+//  
+//  
+////start intake and drive at full speed for whatever many inches
+//  chassis.pid_drive_set(20_in, 30, true);
+//  chassis.pid_wait_quick_chain();
+//
+//  chassis.pid_drive_set(-7_in, 70, true);
+//  chassis.pid_wait();
+//  
+//
+//  // Step 4 turn:  degrees towards center goal
+//  /*chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
+//  setClaw(0);
+//  chassis.pid_wait_quick_chain();
+//
+//  
+// //step 5: Drive forward to scoring postion
+//  chassis.pid_drive_set(15_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//
+//  
+//  //score in goals
+//  setClaw(-127);//full reverse
+//  setLift(127);
+//  pros::delay(2000);
+//  setLift(0);
+//  setClaw(0);
+//  chassis.pid_wait();
+//
+//  chassis.pid_drive_set(-6_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();*/
+//
+//  chassis.pid_turn_relative_set(90, TURN_SPEED);
+//  chassis.pid_wait();
+//
+//  chassis.pid_drive_set(30_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//
+//
+//  chassis.pid_turn_set(90, TURN_SPEED);
+//  chassis.pid_wait();
+//
+//
+//  //step  face match loader head on
+//  chassis.pid_turn_set(180, TURN_SPEED);
+//  toggleMatchLoader();
+//  chassis.pid_wait();
+//
+//  // step   drive forward to match loader
+//  chassis.pid_drive_set(18_in, 50, true);
+//  chassis.pid_wait();
+//
+//
+//  //step 10 intake from match loader
+//  setClaw(127);
+//  pros::delay(2500);
+//  setClaw(0);
+//  chassis.pid_wait();
+//
+//  //drive towards long goal
+//  chassis.pid_drive_set(-29_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//
+//  //step 14 outtake and score in long goal
+// 
+//  setClaw(127);
+//  setLift(-127);
+//  pros::delay(4000);
+//  setLift(0);
+//  setClaw(0);
+//  chassis.pid_wait();
+//
 }
 
 
 
 void rbbf() { // stands for red back, blue front
- //step 1 drive forward to line up with balls on ground
-   chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-   setIntake(127); 
-  chassis.pid_wait_quick_chain();
-
-  
-  chassis.pid_turn_set(-45, TURN_SPEED);
-  chassis.pid_wait_quick_chain();
-  
-
-  //start intake and drive at full speed for whatever many inches
-  chassis.pid_drive_set(18_in, 30, true);
-  chassis.pid_wait_quick_chain();
-
-  chassis.pid_drive_set(-5_in, 70, true);
-  chassis.pid_wait();
-  
-
-  // Step 4 turn:  degrees towards center goal
-  chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
-  setIntake(0);
-  chassis.pid_wait_quick_chain();
-
-  
-  //step 5: Drive forward to scoring postion
-  chassis.pid_drive_set(-20_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  
-  //score in goals
- //up
-  setIntake(127);
-  setOuttake(-80);
-  pros::delay(3000);
-  setOuttake(0);
-  setOuttake(0);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(36_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
- //step   turn to make partial square up
-  chassis.pid_turn_set(-90, TURN_SPEED); //very confusing degree add up
-  chassis.pid_wait();
-
-  //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  //step  face match loader head on
-  chassis.pid_turn_set(180, TURN_SPEED);
-  toggleMatchLoader();
-  chassis.pid_wait();
-
-  // step   drive forward to match loader
-  chassis.pid_drive_set(18_in, 50, true);
-  chassis.pid_wait();
-
-
-  //step 10 intake from match loader
-  setIntake(127);
-  pros::delay(2500);
-  setIntake(0);
-  chassis.pid_wait();
-
-  //drive towards long goal
-  chassis.pid_drive_set(-29_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  //step 14 outtake and score in long goal
- 
-  setIntake(127);
-  setOuttake(-127);
-  pros::delay(3000);
-  setOuttake(0);
-  setIntake(0);
-  chassis.pid_wait();
-
-
+// //step 1 drive forward to line up with balls on ground
+//   chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+//   setClaw(127); 
+//  chassis.pid_wait_quick_chain();
+//
+//  
+//  chassis.pid_turn_set(-45, TURN_SPEED);
+//  chassis.pid_wait_quick_chain();
+//  
+//
+//  //start intake and drive at full speed for whatever many inches
+//  chassis.pid_drive_set(18_in, 30, true);
+//  chassis.pid_wait_quick_chain();
+//
+//  chassis.pid_drive_set(-5_in, 70, true);
+//  chassis.pid_wait();
+//  
+//
+//  // Step 4 turn:  degrees towards center goal
+//  chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
+//  setClaw(0);
+//  chassis.pid_wait_quick_chain();
+//
+//  
+//  //step 5: Drive forward to scoring postion
+//  chassis.pid_drive_set(-20_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  
+//  //score in goals
+// //up
+//  setClaw(127);
+//  setLift(-80);
+//  pros::delay(3000);
+//  setLift(0);
+//  setLift(0);
+//  chassis.pid_wait();
+//
+//  chassis.pid_drive_set(36_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//
+// //step   turn to make partial square up
+//  chassis.pid_turn_set(-90, TURN_SPEED); //very confusing degree add up
+//  chassis.pid_wait();
+//
+//  //step  drive to be able to line up with match loader
+//  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//
+//  //step  face match loader head on
+//  chassis.pid_turn_set(180, TURN_SPEED);
+//  toggleMatchLoader();
+//  chassis.pid_wait();
+//
+//  // step   drive forward to match loader
+//  chassis.pid_drive_set(18_in, 50, true);
+//  chassis.pid_wait();
+//
+//
+//  //step 10 intake from match loader
+//  setClaw(127);
+//  pros::delay(2500);
+//  setClaw(0);
+//  chassis.pid_wait();
+//
+//  //drive towards long goal
+//  chassis.pid_drive_set(-29_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//
+//  //step 14 outtake and score in long goal
+// 
+//  setClaw(127);
+//  setLift(-127);
+//  pros::delay(3000);
+//  setLift(0);
+//  setClaw(0);
+//  chassis.pid_wait();
+//
+//
 }
 
 
@@ -239,265 +239,265 @@ void rbbf() { // stands for red back, blue front
 // Combining Turn + Drive
 ///
 void skills() {
-  //Stage 1 (getting close right loader) 
-  //change part of stage 1 to be similar to end part on SWP once SWP is working
-  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(50_in, 75, true);
-  chassis.pid_wait();
-
-  toggleMatchLoader();
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(180_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  //Change in drive motion from working code, if this messes up delete from here to next comment
-  chassis.pid_drive_set(-12_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
-  chassis.pid_wait_quick_chain();
-
-  //End of change
-  chassis.pid_drive_set(17_in, 40, true);
-  chassis.pid_wait();
-  setIntake(-127);
-  pros::delay(2600);
-  setOuttake(127);
-  pros::delay(50);
-  setOuttake(0);
-  chassis.pid_drive_set(-17_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  toggleMatchLoader();
-  setIntake(0);
-
-  //Stage 2 (getting to far side of right long goal and scoring)
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(85_in, 100, true);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(270_deg, TURN_SPEED); 
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(13_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(-17_in, 75, true);
-  chassis.pid_wait();
-
-  setIntake(-127);
-  setOuttake(127);
-  pros::delay(3000);
-  setOuttake(0);
-  setIntake(0);
-  toggleMatchLoader();
-
-  //Stage 3 (getting far right loader and scoring)
-  chassis.pid_drive_set(29_in, 30, true);
-  chassis.pid_wait();
-
-  setIntake(-127);
-  pros::delay(500);
-  setIntake(0);
-  chassis.pid_drive_set(-30_in, 75, true);
-  toggleMatchLoader();
-  chassis.pid_wait();
-  
-  setIntake(-127);
-  setOuttake(127);
-  pros::delay(2000);
-  setOuttake(0);
-  setIntake(0);
-  
-
-  //Stage 4 (going to left side and getting left far loader) 
-  //edit to get a clump otw to right side once rest of code b4 this is working
-  chassis.pid_drive_set(16_in, 60, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(270_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(96_in, 100, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(0_deg, TURN_SPEED);
-  chassis.pid_wait();
-  toggleMatchLoader();
-  //Change in drive motion from working code, if this messes up delete from here to next comment
-  chassis.pid_drive_set(-16_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  //edit to score clump on goal once rest of code b4 this is working
-  /*
-  setIntake(-127);
-  setOuttake(127);
-  pros::delay(3000);
-  setOuttake(0);
-  setIntake(0);
-  */
-  chassis.pid_drive_set(16_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  //End of change
-  setIntake(-127);
-  chassis.pid_drive_set(28_in, 50, true);
-  chassis.pid_wait();
-  pros::delay(3000); 
-  setOuttake(127);
-  pros::delay(50);
-  setOuttake(0);
-  setIntake(0);
-  chassis.pid_drive_set(-20_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  toggleMatchLoader();
-
-  //Stage 5 (getting to close side of left long goal and scoring)
-  chassis.pid_turn_set(270_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(12_in, 100, true); 
-  chassis.pid_wait();
-  chassis.pid_turn_set(180_deg, TURN_SPEED); 
-  chassis.pid_wait();
-  chassis.pid_drive_set(80_in, 80, true); 
-  chassis.pid_wait();
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(180_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(-14_in, 90, true);
-  chassis.pid_wait();
-  setIntake(-127);
-  setOuttake(127);
-  pros::delay(2000); 
-  setOuttake(0);
-  setIntake(0);
-  toggleMatchLoader();
-
-  //Stage 6 (getting close left loader and scoring)
-  chassis.pid_drive_set(29_in, 50, true);
-  chassis.pid_wait();
-  setIntake(-127);
-  pros::delay(3000);
-  setIntake(0);
-  chassis.pid_drive_set(-30_in, 75, true);
-  chassis.pid_wait();
-  setIntake(-127);
-  setOuttake(127);
-  pros::delay(2500);
-  setOuttake(0);
-  setIntake(0);
-  toggleMatchLoader();
-
-  //Stage 7 (parking) commented out to protect bot from agressive testing, uncomment when ready to test parking
-  /*
-  chassis.pid_drive_set(6_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(48_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(180_deg, TURN_SPEED);
-  chassis.pid_wait();
-  setIntake(-127);
-  chassis.pid_drive_set(40_in, 127, true);
-  chassis.pid_wait();
-  chassis.pid_drive_set(10_in, 80, true);
-  chassis.pid_wait();
-  pros::delay(4000);
-  setIntake(0);
-  */
-  //Stage 7 redo (hopefully parking better)commented out for now to not interfere with testing other stages
-/*
-  chassis.pid_drive_set(6_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(160_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(5_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(130_deg, TURN_SPEED);
-  chassis.pid_wait();
-  chassis.pid_drive_set(5_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(90_deg, TURN_SPEED);
-  chassis.pid_wait();
-  setIntake(-127);
-  chassis.pid_drive_set(40_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  pros::delay(4000);
-  setIntake(0);
-*/
-
-
+//  //Stage 1 (getting close right loader) 
+//  //change part of stage 1 to be similar to end part on SWP once SWP is working
+//  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//
+//  chassis.pid_turn_set(90_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//
+//  chassis.pid_drive_set(50_in, 75, true);
+//  chassis.pid_wait();
+//
+//  toggleMatchLoader();
+//  chassis.pid_wait();
+//
+//  chassis.pid_turn_set(180_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//
+//  //Change in drive motion from working code, if this messes up delete from here to next comment
+//  chassis.pid_drive_set(-12_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//
+//  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
+//  chassis.pid_wait_quick_chain();
+//
+//  //End of change
+//  chassis.pid_drive_set(17_in, 40, true);
+//  chassis.pid_wait();
+//  setClaw(-127);
+//  pros::delay(2600);
+//  setLift(127);
+//  pros::delay(50);
+//  setLift(0);
+//  chassis.pid_drive_set(-17_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  toggleMatchLoader();
+//  setClaw(0);
+//
+//  //Stage 2 (getting to far side of right long goal and scoring)
+//  chassis.pid_turn_set(90_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//
+//  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//
+//  chassis.pid_turn_set(0_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//
+//  chassis.pid_drive_set(85_in, 100, true);
+//  chassis.pid_wait();
+//
+//  chassis.pid_turn_set(270_deg, TURN_SPEED); 
+//  chassis.pid_wait();
+//
+//  chassis.pid_drive_set(13_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//
+//  chassis.pid_turn_set(0_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//
+//  chassis.pid_drive_set(-17_in, 75, true);
+//  chassis.pid_wait();
+//
+//  setClaw(-127);
+//  setLift(127);
+//  pros::delay(3000);
+//  setLift(0);
+//  setClaw(0);
+//  toggleMatchLoader();
+//
+//  //Stage 3 (getting far right loader and scoring)
+//  chassis.pid_drive_set(29_in, 30, true);
+//  chassis.pid_wait();
+//
+//  setClaw(-127);
+//  pros::delay(500);
+//  setClaw(0);
+//  chassis.pid_drive_set(-30_in, 75, true);
+//  toggleMatchLoader();
+//  chassis.pid_wait();
+//  
+//  setClaw(-127);
+//  setLift(127);
+//  pros::delay(2000);
+//  setLift(0);
+//  setClaw(0);
+//  
+//
+//  //Stage 4 (going to left side and getting left far loader) 
+//  //edit to get a clump otw to right side once rest of code b4 this is working
+//  chassis.pid_drive_set(16_in, 60, true);
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(270_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  chassis.pid_drive_set(96_in, 100, true);
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(0_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  toggleMatchLoader();
+//  //Change in drive motion from working code, if this messes up delete from here to next comment
+//  chassis.pid_drive_set(-16_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  //edit to score clump on goal once rest of code b4 this is working
+//  /*
+//  setClaw(-127);
+//  setLift(127);
+//  pros::delay(3000);
+//  setLift(0);
+//  setClaw(0);
+//  */
+//  chassis.pid_drive_set(16_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  //End of change
+//  setClaw(-127);
+//  chassis.pid_drive_set(28_in, 50, true);
+//  chassis.pid_wait();
+//  pros::delay(3000); 
+//  setLift(127);
+//  pros::delay(50);
+//  setLift(0);
+//  setClaw(0);
+//  chassis.pid_drive_set(-20_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  toggleMatchLoader();
+//
+//  //Stage 5 (getting to close side of left long goal and scoring)
+//  chassis.pid_turn_set(270_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  chassis.pid_drive_set(12_in, 100, true); 
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(180_deg, TURN_SPEED); 
+//  chassis.pid_wait();
+//  chassis.pid_drive_set(80_in, 80, true); 
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(90_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(180_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  chassis.pid_drive_set(-14_in, 90, true);
+//  chassis.pid_wait();
+//  setClaw(-127);
+//  setLift(127);
+//  pros::delay(2000); 
+//  setLift(0);
+//  setClaw(0);
+//  toggleMatchLoader();
+//
+//  //Stage 6 (getting close left loader and scoring)
+//  chassis.pid_drive_set(29_in, 50, true);
+//  chassis.pid_wait();
+//  setClaw(-127);
+//  pros::delay(3000);
+//  setClaw(0);
+//  chassis.pid_drive_set(-30_in, 75, true);
+//  chassis.pid_wait();
+//  setClaw(-127);
+//  setLift(127);
+//  pros::delay(2500);
+//  setLift(0);
+//  setClaw(0);
+//  toggleMatchLoader();
+//
+//  //Stage 7 (parking) commented out to protect bot from agressive testing, uncomment when ready to test parking
+//  /*
+//  chassis.pid_drive_set(6_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(90_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  chassis.pid_drive_set(48_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(180_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  setClaw(-127);
+//  chassis.pid_drive_set(40_in, 127, true);
+//  chassis.pid_wait();
+//  chassis.pid_drive_set(10_in, 80, true);
+//  chassis.pid_wait();
+//  pros::delay(4000);
+//  setClaw(0);
+//  */
+//  //Stage 7 redo (hopefully parking better)commented out for now to not interfere with testing other stages
+///*
+//  chassis.pid_drive_set(6_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(90_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(160_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  chassis.pid_drive_set(5_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(130_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  chassis.pid_drive_set(5_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  chassis.pid_turn_set(90_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  setClaw(-127);
+//  chassis.pid_drive_set(40_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  pros::delay(4000);
+//  setClaw(0);
+//*/
+//
+//
 }
 
 ///
 // Wait Until and Changing Max Speed
 ///
 void backup() {
- //this is driving forward and stopping as a back up per draykes request
-
- chassis.pid_drive_set(3_in, DRIVE_SPEED, true);
- chassis.pid_wait();
+// //this is driving forward and stopping as a back up per draykes request
+//
+// chassis.pid_drive_set(3_in, DRIVE_SPEED, true);
+// chassis.pid_wait();
 }
 
 void bs(){
-  setOuttake(-127);
-  pros::delay(2000);
-  setOuttake(0);
-  chassis.pid_wait();
+//  setLift(-127);
+//  pros::delay(2000);
+//  setLift(0);
+//  chassis.pid_wait();
 }
 ///
 // Swing Example
 ///
 void sw() {
- 
-
-  chassis.pid_swing_set(ez::LEFT_SWING, 45_deg, SWING_SPEED, 45);
-  chassis.pid_wait();
-
-  chassis.pid_swing_set(ez::RIGHT_SWING, 0_deg, SWING_SPEED, 45);
-  chassis.pid_wait();
-
-  chassis.pid_swing_set(ez::RIGHT_SWING, 45_deg, SWING_SPEED, 45);
-  chassis.pid_wait();
-
-  chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, SWING_SPEED, 45);
-  chassis.pid_wait();
+// 
+//
+//  chassis.pid_swing_set(ez::LEFT_SWING, 45_deg, SWING_SPEED, 45);
+//  chassis.pid_wait();
+//
+//  chassis.pid_swing_set(ez::RIGHT_SWING, 0_deg, SWING_SPEED, 45);
+//  chassis.pid_wait();
+//
+//  chassis.pid_swing_set(ez::RIGHT_SWING, 45_deg, SWING_SPEED, 45);
+//  chassis.pid_wait();
+//
+//  chassis.pid_swing_set(ez::LEFT_SWING, 0_deg, SWING_SPEED, 45);
+//  chassis.pid_wait();
 }
 
 ///
 // PID Test
 ///
 void pid_test() {
-  // Simple test: drive 10 inches forward, wait, turn 360 degrees
-  chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  
-  pros::delay(2000); // Wait 2 seconds so you can measure the distance
-  
-  // Turn 360 degrees - should end up facing the same direction
-  chassis.pid_turn_set(180_deg, TURN_SPEED);
-  chassis.pid_wait();
-  
-   // Wait 2 seconds so you can see the final heading
+//  // Simple test: drive 10 inches forward, wait, turn 360 degrees
+//  chassis.pid_drive_set(20_in, DRIVE_SPEED, true);
+//  chassis.pid_wait();
+//  
+//  pros::delay(2000); // Wait 2 seconds so you can measure the distance
+//  
+//  // Turn 360 degrees - should end up facing the same direction
+//  chassis.pid_turn_set(180_deg, TURN_SPEED);
+//  chassis.pid_wait();
+//  
+//   // Wait 2 seconds so you can see the final heading
 }
 
 ///
