@@ -56,9 +56,13 @@ void rfbb() { //right side
   setClaw(-127);
   pros::delay(300);
   setClaw(-30); // light grip so it stays closed
-
-  //drive forward 5 inches
-  chassis.pid_drive_set(5_in, DRIVE_SPEED, false);
+  //lift up a little bit
+  setLift(-127);
+  pros::delay(200);
+  setLift(0);
+  
+  //drive backward 5 inches
+  chassis.pid_drive_set(-5_in, DRIVE_SPEED, false);
   chassis.pid_wait();
 
   //open the claw
