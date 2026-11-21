@@ -181,9 +181,6 @@ void ez_screen_task() {
         ez::as::page_blank_remove_all();
     }
 
-    // Team number on the bottom line of the brain screen
-    ez::screen_print("Team 2790F", 7);
-
     pros::delay(ez::util::DELAY_TIME);
   }
 }
