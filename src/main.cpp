@@ -62,8 +62,8 @@ void initialize() {
   // Autonomous Selector using LLEMU
   ez::as::auton_selector.autons_add({
       {"Basic Auton\n\nClose claw, drive back, open claw", basic_auton},
-      {"In Progress Auton\n\nStill being worked on", in_progress_auton},
-      {"Skills Auton\n\nSkills Auton", skills},
+      {"Blue Single Flip", blue_single_flip},
+      {"Red Double Flip", red_double_flip},
       {"PID Test\n\nTesting drive 10in + turn 360deg", pid_test},
       {"Basic drive forward\n\nThis is back up if they have good auto I guess?", backup},
       {"Backup Skills\n\nThis is The back up for skills", bs},

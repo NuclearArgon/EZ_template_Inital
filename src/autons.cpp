@@ -71,7 +71,7 @@ void basic_auton() { //close claw, drive back, open claw
 
 
 
-void in_progress_auton() { //still being worked on
+void blue_single_flip() {
   //start with the claw closed
   setClaw(-127);
   pros::delay(300);
@@ -90,20 +90,28 @@ void in_progress_auton() { //still being worked on
 
   chassis.pid_drive_set(15_in, DRIVE_SPEED, false);
   chassis.pid_wait();
-  chassis.pid_turn_set( 55_deg, TURN_SPEED);
+  chassis.pid_turn_set( 58_deg, TURN_SPEED);
   chassis.pid_wait();
 
 
-  chassis.pid_drive_set( -10_in, DRIVE_SPEED, false);
+  chassis.pid_drive_set( -9_in, DRIVE_SPEED, false);
   chassis.pid_wait();
 
-  chassis.pid_drive_set(20_in, DRIVE_SPEED, false);
+  chassis.pid_turn_set(190_deg, TURN_SPEED);
   chassis.pid_wait();
+
+  chassis.pid_drive_set(-24_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+
+  //chassis.pid_drive_set(9.5_in, DRIVE_SPEED, false);
+  //chassis.pid_wait();
+  //chassis.pid_drive_set(1_in, DRIVE_SPEED, false);
+  //chassis.pid_wait();
 
   //lift up, then stop after 3 seconds so the chain doesnt snap
-  setLift(-127);
-  pros::delay(3000);
-  setLift(0); // stop and hold where it is
+  //setLift(-127);
+ // pros::delay(1000);
+ // setLift(0); // stop and hold where it is
 
 
 }
@@ -112,23 +120,42 @@ void in_progress_auton() { //still being worked on
 ///
 // Combining Turn + Drive
 ///
-void skills() {
-//  //Stage 1 (getting close right loader) 
-//  //change part of stage 1 to be similar to end part on SWP once SWP is working
-//  chassis.pid_drive_set(12_in, DRIVE_SPEED, true);
-//  chassis.pid_wait();
-//
-//  chassis.pid_turn_set(90_deg, TURN_SPEED);
-//  chassis.pid_wait();
-//
-//  chassis.pid_drive_set(50_in, 75, true);
-//  chassis.pid_wait();
-//
-//  toggleMatchLoader();
-//  chassis.pid_wait();
-//
-//  chassis.pid_turn_set(180_deg, TURN_SPEED);
-//  chassis.pid_wait();
+void red_double_flip() {
+ setClaw(-127);
+  pros::delay(300);
+  setClaw(-30); // light grip so it stays closed
+  //lift up a little bit
+ 
+  
+  //drive backward 12 inches
+  chassis.pid_drive_set(-12_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+  pros::delay(800);
+  //open the claw
+  setClaw(127);
+  pros::delay(500);
+  setClaw(0); // stop and hold open
+
+  chassis.pid_drive_set(15_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+  chassis.pid_turn_set( 58_deg, TURN_SPEED);
+  chassis.pid_wait();
+
+
+  chassis.pid_drive_set( -9_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+
+  chassis.pid_turn_set(190_deg, TURN_SPEED);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-24_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+  
+  chassis.pid_drive_set(8_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(-10_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
 //
 //  //Change in drive motion from working code, if this messes up delete from here to next comment
 //  chassis.pid_drive_set(-12_in, DRIVE_SPEED, true);

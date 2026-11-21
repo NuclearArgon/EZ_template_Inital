@@ -3,8 +3,8 @@
 void default_constants();
 
 void basic_auton();
-void in_progress_auton();
-void skills();
+void blue_single_flip();
+void red_double_flip();
 void pid_test();
 void backup();
 void bs();
