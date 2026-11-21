@@ -2,8 +2,8 @@
 
 void default_constants();
 
-void rfbb();
-void rbbf();
+void basic_auton();
+void in_progress_auton();
 void skills();
 void pid_test();
 void backup();
