@@ -59,8 +59,8 @@ void basic_auton() { //close claw, drive back, open claw
   //lift up a little bit
  
   
-  //drive backward 5 inches
-  chassis.pid_drive_set(-8_in, DRIVE_SPEED, false);
+  //drive backward 12 inches
+  chassis.pid_drive_set(-12_in, DRIVE_SPEED, false);
   chassis.pid_wait();
   pros::delay(800);
   //open the claw
