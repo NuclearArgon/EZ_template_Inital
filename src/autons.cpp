@@ -72,82 +72,38 @@ void basic_auton() { //close claw, drive back, open claw
 
 
 void in_progress_auton() { //still being worked on
- //step 1 drive forward to line up with balls on ground
-   chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-   setClaw(127); 
-  chassis.pid_wait_quick_chain();
-
-  
-  chassis.pid_turn_set(-45, TURN_SPEED);
-  chassis.pid_wait_quick_chain();
-  
-
-  //start intake and drive at full speed for whatever many inches
-  chassis.pid_drive_set(18_in, 30, true);
-  chassis.pid_wait_quick_chain();
-
-  chassis.pid_drive_set(-5_in, 70, true);
-  chassis.pid_wait();
-  
-
-  // Step 4 turn:  degrees towards center goal
-  chassis.pid_turn_relative_set(-90, TURN_SPEED); // face middle goal
-  setClaw(0);
-  chassis.pid_wait_quick_chain();
-
-  
-  //step 5: Drive forward to scoring postion
-  chassis.pid_drive_set(-20_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  
-  //score in goals
- //up
-  setClaw(127);
-  setLift(-80);
-  pros::delay(3000);
-  setLift(0);
-  setLift(0);
-  chassis.pid_wait();
-
-  chassis.pid_drive_set(36_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
- //step   turn to make partial square up
-  chassis.pid_turn_set(-90, TURN_SPEED); //very confusing degree add up
-  chassis.pid_wait();
-
-  //step  drive to be able to line up with match loader
-  chassis.pid_drive_set(10_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  //step  face match loader head on
-  chassis.pid_turn_set(180, TURN_SPEED);
-  toggleMatchLoader();
-  chassis.pid_wait();
-
-  // step   drive forward to match loader
-  chassis.pid_drive_set(18_in, 50, true);
-  chassis.pid_wait();
-
-
-  //step 10 intake from match loader
-  setClaw(127);
-  pros::delay(2500);
-  setClaw(0);
-  chassis.pid_wait();
-
-  //drive towards long goal
-  chassis.pid_drive_set(-29_in, DRIVE_SPEED, true);
-  chassis.pid_wait();
-
-  //step 14 outtake and score in long goal
+  //start with the claw closed
+  setClaw(-127);
+  pros::delay(300);
+  setClaw(-30); // light grip so it stays closed
+  //lift up a little bit
  
+  
+  //drive backward 12 inches
+  chassis.pid_drive_set(-12_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+  pros::delay(800);
+  //open the claw
   setClaw(127);
+  pros::delay(500);
+  setClaw(0); // stop and hold open
+
+  chassis.pid_drive_set(15_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+  chassis.pid_turn_set( 55_deg, TURN_SPEED);
+  chassis.pid_wait();
+
+
+  chassis.pid_drive_set( -10_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+
+  chassis.pid_drive_set(20_in, DRIVE_SPEED, false);
+  chassis.pid_wait();
+
+  //lift up, then stop after 3 seconds so the chain doesnt snap
   setLift(-127);
   pros::delay(3000);
-  setLift(0);
-  setClaw(0);
-  chassis.pid_wait();
+  setLift(0); // stop and hold where it is
 
 
 }
